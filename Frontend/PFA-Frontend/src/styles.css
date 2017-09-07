@@ -1,0 +1,31 @@
+/*
+To enable css grid on Chrome.
+1. In the chorme browser enter the following chorme://flags, enter.
+2. Locate Enable experimental Web Plateform feature.
+3. Select Enable.
+*/
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	font-family: arial, sans-serif;
+}
+
+.grid-container{
+  border: solid 4px rgb(0, 0, 0);
+  display: grid;
+}
+
+.grid-item {
+	color: #fff;
+  box-sizing: border-box;
+	font-size: 1.2em;
+  padding: .25em;
+	text-align: center;
+}
+
+.grid-item strong {
+	display: block;
+	font-size: 130%;
+}
