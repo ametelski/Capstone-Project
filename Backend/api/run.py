@@ -14,6 +14,7 @@ from bson.json_util import dumps
 from flask import *
 
 
+# if your instance of mongo is hosted elsewhere, change the params here to match
 client = MongoClient('localhost', 27017)
 db = client.ProgrammingForAll
 admins = db.admins
@@ -54,7 +55,9 @@ def get_all_admins():
     for admin in admins.find():
         output.append({'firstName' : admin['firstName'], 'lastName' : admin['lastName'], \
             'id' : admin['id'], 'role' : admin['role']})
-    return jsonify({'students' : output})
+    return jsonify({'admins' : output})
+
+
 
 def populate_db():
     dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin')
