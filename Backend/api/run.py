@@ -56,11 +56,14 @@ def get_all_admins():
             'id' : admin['id'], 'role' : admin['role']})
     return jsonify({'students' : output})
 
-
-if __name__ == "__main__":
-    clean_db()
+def populate_db():
     dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin')
     dummyStudent = Student('Timmy', 'Junior', 1, 12)
     add_student(dummyStudent)
     add_admin(dummyAdmin)
+
+
+if __name__ == "__main__":
+    clean_db()
+    populate_db()
     app.run()
