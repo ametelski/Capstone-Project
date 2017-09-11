@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { TempRestService } from '../temp-rest.service';
+import { ISkillPath } from '../Models/skillPath.model';
 
 @Component({
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  skillPath = [
+  skillPath: ISkillPath[] = [
     {
-      id: 1,
-      name: 'Python',
+      skillName: 'Python',
       uri: '/pythonSkillTree',
-      percentageCompleted: 20
+      usersProgress: 20
     },
     {
-      id: 2,
-      name: 'HTML',
+      skillName: 'HTML',
       uri: '/HTMLSkillTree',
-      percentageCompleted: 45
+      usersProgress: 45
     }
   ]
+
+
   id
   content: string[]
   data: JSON
