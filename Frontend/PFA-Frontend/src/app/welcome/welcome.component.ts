@@ -6,7 +6,20 @@ import { TempRestService } from '../temp-rest.service';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-
+  skillPath = [
+    {
+      id: 1,
+      name: 'Python',
+      uri: '/pythonSkillTree',
+      percentageCompleted: 20
+    },
+    {
+      id: 2,
+      name: 'HTML',
+      uri: '/HTMLSkillTree',
+      percentageCompleted: 45
+    }
+  ]
   id
   content: string[]
   data: JSON
@@ -18,10 +31,11 @@ export class WelcomeComponent implements OnInit {
      this.service.getService().subscribe(data => {
       this.data = data;
       console.log(data);
-      debugger;
       this.id = data['id'];
       this.content = data['content']
      });
   }
+
+
 
 }
