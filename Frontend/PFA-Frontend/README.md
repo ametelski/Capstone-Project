@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.
 
-# What you will need
+## What you will need
 - install node 6.9.0+ 
 - install angular CLI  ```$ npm install -g @angular/cli ```
 
