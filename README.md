@@ -22,6 +22,7 @@ Programming for All
 - MongoDB
   - Mac: (I highly reccomend you take a look at installing Homebrew if you havent already. This will simplify the installation of MongoDB as well as many other libraries you may encounter... Otherwise you can install manually, this guide shows both ways.) https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
   - Windows: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+    - mongodb installation and setup video https://www.youtube.com/watch?v=1uFY60CESlM
 - Flask
   - Mac/Windows: Once you have python installed you can simply use the command "$sudo pip install Flask"
     - Windows user: You will need to add pip to environment path variable. This video will show you how to do that. https://www.youtube.com/watch?v=mFqdeX1C-8M
