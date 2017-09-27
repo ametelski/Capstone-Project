@@ -1,8 +1,9 @@
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -28,12 +29,14 @@ import { SkillTreeConceptAdminApprovalComponent } from './skill-tree-concept-adm
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    HttpModule
+    HttpModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     TempRestService,
     SkillpathService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }
