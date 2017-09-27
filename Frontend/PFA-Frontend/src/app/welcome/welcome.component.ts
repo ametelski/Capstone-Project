@@ -10,7 +10,7 @@ export class WelcomeComponent implements OnInit {
   skillPath: ISkillPath[] = [
     {
       skillName: 'Python',
-      URL: '/sign-up',
+      URL: '/skillTree',
       usersProgress: 20
     },
     {

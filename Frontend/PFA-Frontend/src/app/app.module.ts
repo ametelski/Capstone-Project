@@ -11,13 +11,19 @@ import { appRoutes } from '../routes';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TempRestService } from './temp-rest.service';
 import { SkillpathService } from './skillpath.service';
+import { SkillTreeComponent } from './skill-tree/skill-tree.component';
+import { SkillTreePopoverComponent } from './skill-tree-popover/skill-tree-popover.component';
+import { SkillTreeConceptAdminApprovalComponent } from './skill-tree-concept-admin-approval/skill-tree-concept-admin-approval.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SignUpComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    SkillTreeComponent,
+    SkillTreePopoverComponent,
+    SkillTreeConceptAdminApprovalComponent
   ],
   imports: [
     BrowserModule,
