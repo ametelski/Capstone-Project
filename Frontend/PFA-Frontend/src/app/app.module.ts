@@ -10,6 +10,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { appRoutes } from '../routes';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TempRestService } from './temp-rest.service';
+import { SkillpathService } from './skillpath.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TempRestService } from './temp-rest.service';
     HttpModule
   ],
   providers: [
-    TempRestService
+    TempRestService,
+    SkillpathService
   ],
   bootstrap: [AppComponent]
 })

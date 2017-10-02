@@ -4,3 +4,18 @@
   <p>"id: "{{ id }}</p>
   <p>"Content: "{{content}}</p>
 </div>
+
+<div *ngFor="let skill of skillPath" class="container">
+    <div class="panel panel-primary button" [routerLink]="[skill.URL]" >
+        <div class="panel-heading">
+          <h3 class="panel-title">{{skill.skillName}}</h3>
+        </div>
+        <div class="panel-body">
+          <h3>Concepts Completed</h3>
+          <div class="progress progress-stripped">
+              <div class="progress-bar progress-bar-success " [style.width]="skill.usersProgress + '%'"  ></div>
+            </div>
+            <a>{{skill.usersProgress}}%</a>
+        </div>
+  </div>
+</div>
