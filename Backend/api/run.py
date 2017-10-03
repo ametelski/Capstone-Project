@@ -120,6 +120,8 @@ def get_all_admins():
 '''
     Description:
         Returns a list of all skills and their statuses for a specific user.
+        
+        http://127.0.0.1:5000/getSkill
     
     Params:
         userID
@@ -150,7 +152,7 @@ def get_all_admins():
             ]
         }
 '''
-@app.route("/getSkill/<userID>", methods=['GET'])
+@app.route("/getSkill", methods=['GET'])
 def get_skill(userID = None):
 
     'TODO: These are just constant values for now, later on they should be retreived from the database using the userID'
@@ -185,15 +187,44 @@ def get_skill(userID = None):
 
 '''
     Description:
+        http://127.0.0.1:5000/getSkillConcept/USER_ID
 
     Params:
 
     Returns:
+        JSON
+        
+        {
+          "completed": true, 
+          "extLearnLinks": "www.google.com,www.bing.com,www.ask.com", 
+          "location": "1,2", 
+          "skillDescription": "Python skill concepts", 
+          "skillTitle": "Python"
+        }
 
 '''
 @app.route('/getSkillConcept/<userID>', methods=['GET'])
 def get_skill_concept(userID = None, skillType = None):
-    return jsonify({''})
+
+    """TODO: Returns skill concepts based on the USER ID from the database """
+
+    CONST_SKILL_TITLE       = "skillTitle";
+    CONST_SKILL_DESC        = "skillDescription";
+    CONST_SKILL_LINK        = "extLearnLinks";
+    CONST_SKILL_COMPLETED   = "completed";
+    CONST_SKILL_LOCATION    = "location";
+
+    skillTitle  = "Python";
+    skillDesc   = "Python skill concepts";
+    extLinks    = "www.google.com,www.bing.com,www.ask.com";
+    completed   = True;
+    location    = "1,2";
+
+    return jsonify({CONST_SKILL_TITLE : skillTitle,
+                    CONST_SKILL_DESC : skillDesc,
+                    CONST_SKILL_LINK : extLinks,
+                    CONST_SKILL_COMPLETED : completed,
+                    CONST_SKILL_LOCATION : location})
 
 
 def populate_db():
