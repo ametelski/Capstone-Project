@@ -183,7 +183,7 @@ def get_skill():
         {CONST_SKILL_NAME_DESC: skillName2, CONST_SKILL_URL_DESC: skillURL2, CONST_SKILL_COMPLETED_DESC: skillPercentage2, CONST_SKILL_CONCEPTS_DESC: concepts2},
         {CONST_SKILL_NAME_DESC: skillName3, CONST_SKILL_URL_DESC: skillURL3, CONST_SKILL_COMPLETED_DESC: skillPercentage3, CONST_SKILL_CONCEPTS_DESC: concepts3}
     ]
-    return jsonify(skills = list)
+    return jsonify(skills = list);
 
 
 '''
@@ -230,7 +230,42 @@ def get_skill_concept():
                     CONST_SKILL_DESC : skillType,
                     CONST_SKILL_LINK : extLinks,
                     CONST_SKILL_COMPLETED : completed,
-                    CONST_SKILL_LOCATION : location})
+                    CONST_SKILL_LOCATION : location});
+
+'''
+    Description:
+        Returns a boolean that depending if the skill concept is completed by the given user ID.
+        
+        http://127.0.0.1:5000/completed?userID=12345&skillConcept=concept
+    
+    Params:
+        userID, skillConcept
+        
+    Returns:
+        JSON
+        
+        {
+          "completed": false, 
+          "skillConcept": "concept", 
+          "userID": "200"
+        }
+'''
+@app.route('/completed', methods=['GET'])
+def get_completed():
+
+    '''TODO: Return completion based on the USER ID and SKILL CONCEPT from the database'''
+
+    userID = request.args.get('userID');
+    skillConcept = request.args.get('skillConcept');
+
+    CONST_COMPLETED_DESC = "completed";
+    completed = False;
+
+    return jsonify({
+        'userID' : userID,
+        'skillConcept' : skillConcept,
+        CONST_COMPLETED_DESC : completed
+    });
 
 
 def populate_db():
