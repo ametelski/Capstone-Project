@@ -23,7 +23,7 @@ import { SkillTreeConceptAdminApprovalComponent } from './skill-tree-concept-adm
     NavbarComponent,
     SignUpComponent,
     WelcomeComponent,
-    LoginComponent
+    LoginComponent,
     SkillTreeComponent,
     SkillTreePopoverComponent,
     SkillTreeConceptAdminApprovalComponent
