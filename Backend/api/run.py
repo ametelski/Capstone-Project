@@ -121,7 +121,7 @@ def get_all_admins():
     Description:
         Returns a list of all skills and their statuses for a specific user.
         
-        http://127.0.0.1:5000/getSkill
+        http://127.0.0.1:5000/getSkill?userID=USER_ID
     
     Params:
         userID
@@ -140,22 +140,23 @@ def get_all_admins():
                 {
                     "skillConcepts": "concepts", 
                     "skillConceptsCompleted": "23", 
-                    "skillNam": "Python", 
+                    "skillName": "Python", 
                     "skillURL": "www.url1.com"
                 }, 
                 {
                     "skillConcepts": "concepts", 
                     "skillConceptsCompleted": "78", 
-                    "skillNam": "CSS", 
+                    "skillName": "CSS", 
                     "skillURL": "www.url2.com"
                 }
             ]
         }
 '''
 @app.route("/getSkill", methods=['GET'])
-def get_skill(userID = None):
+def get_skill():
 
     'TODO: These are just constant values for now, later on they should be retreived from the database using the userID'
+    userID = request.args.get('userID');
 
     CONST_SKILL_NAME_DESC = "skillName";
     skillName1 = "HTML";
@@ -187,10 +188,12 @@ def get_skill(userID = None):
 
 '''
     Description:
-        http://127.0.0.1:5000/getSkillConcept/USER_ID
+        Returns the skill concepts for a specific userID and skillType
+    
+        http://127.0.0.1:5000/getSkillConcept?userID=12345&skillType=Python
 
     Params:
-
+        userID, skillType
     Returns:
         JSON
         
@@ -203,10 +206,13 @@ def get_skill(userID = None):
         }
 
 '''
-@app.route('/getSkillConcept/<userID>', methods=['GET'])
-def get_skill_concept(userID = None, skillType = None):
+@app.route('/getSkillConcept', methods=['GET'])
+def get_skill_concept():
 
     """TODO: Returns skill concepts based on the USER ID from the database """
+
+    userID = request.args.get('userID');
+    skillType = request.args.get('skillType');
 
     CONST_SKILL_TITLE       = "skillTitle";
     CONST_SKILL_DESC        = "skillDescription";
@@ -220,8 +226,8 @@ def get_skill_concept(userID = None, skillType = None):
     completed   = True;
     location    = "1,2";
 
-    return jsonify({CONST_SKILL_TITLE : skillTitle,
-                    CONST_SKILL_DESC : skillDesc,
+    return jsonify({CONST_SKILL_TITLE : userID,
+                    CONST_SKILL_DESC : skillType,
                     CONST_SKILL_LINK : extLinks,
                     CONST_SKILL_COMPLETED : completed,
                     CONST_SKILL_LOCATION : location})
