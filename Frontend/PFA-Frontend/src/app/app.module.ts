@@ -11,7 +11,7 @@ import { appRoutes } from '../routes';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TempRestService } from './temp-rest.service';
 import { SkillpathService } from './skillpath.service';
-import { UserRoleComponent } from './user-role/user-role.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { UserRoleComponent } from './user-role/user-role.component';
     NavbarComponent,
     SignUpComponent,
     WelcomeComponent,
-    UserRoleComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
