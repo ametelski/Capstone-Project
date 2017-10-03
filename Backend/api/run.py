@@ -46,7 +46,7 @@ def get_all_students():
     output = []
     for student in students.find():
         output.append({'firstName' : student['firstName'], 'lastName' : student['lastName'], \
-            'id' : student['id'], 'age' : student['age']})
+            'id' : student['id'], 'age' : student['age'], 'email' : student['email']})
     return jsonify({'students' : output})
 
 @app.route("/admins", methods=['GET'])
@@ -54,14 +54,14 @@ def get_all_admins():
     output = []
     for admin in admins.find():
         output.append({'firstName' : admin['firstName'], 'lastName' : admin['lastName'], \
-            'id' : admin['id'], 'role' : admin['role']})
+            'id' : admin['id'], 'role' : admin['role'], 'email' : admin['email']})
     return jsonify({'admins' : output})
 
 
 
 def populate_db():
-    dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin')
-    dummyStudent = Student('Timmy', 'Junior', 1, 12)
+    dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin', 'admin1@pfa.com')
+    dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com')
     add_student(dummyStudent)
     add_admin(dummyAdmin)
 
