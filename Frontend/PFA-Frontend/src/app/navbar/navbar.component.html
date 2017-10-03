@@ -1,4 +1,26 @@
-<nav class="navbar navbar-default">
+<div class="container mb-1">
+<mdb-navbar SideClass="navbar navbar-expand-xl navbar-dark indigo">
+  <logo>
+    <a class= "navbar-brand" [routerLink]="['/home']">PFA </a>
+  </logo>
+  <links>
+      <ul class="navbar-nav right">
+          <li class="nav-item right">
+              <a [routerLink]="['/sign-up']" class="nav-link waves-light" mdbRippleRadius>Sign up</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbRippleRadius>Login</a>
+          </li>
+      </ul>
+  </links>
+</mdb-navbar>
+</div>
+
+
+
+
+
+<!-- <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -17,4 +39,4 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->

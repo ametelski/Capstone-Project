@@ -8,6 +8,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 if this is the first time you have downloaded this repo you will need to run this command in the root directory. 
 ```$ npm install ```
+## Styling 
+- Angular Bootstrap with Material Design https://mdbootstrap.com/angular/
+- Quick start guide https://mdbootstrap.com/angular/5min-quickstart/
 
 ## Development server
 
