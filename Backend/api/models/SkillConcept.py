@@ -4,7 +4,7 @@
 # Author: Gabriel Fabian, 2017
 
 
-from ExtLearnLink import *
+from .ExtLearnLink import *
 
 class SkillConcept():
 

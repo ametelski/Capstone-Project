@@ -3,11 +3,11 @@
 # Programming For All
 # Author: Gabriel Fabian, 2017
 
-from SkillConcept import *
+from .SkillConcept import *
 
 class Skill():
 
-	def __init__(self, skillName, skillUrl, skillConcepts, skillConceptsCompleted=0):
+	def __init__(self, skillName, skillUrl, skillConcepts, skillConceptsCompleted):
 		self.skillName = skillName
 		self.skillUrl = skillUrl
 		self.skillConceptsCompleted = skillConceptsCompleted

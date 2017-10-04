@@ -7,11 +7,12 @@
 # Author: Miguel Deniz
 # Last update: 10/2/17
 
-from models.Person import *
 from models.Admin import *
 from models.Student import *
+from models.Skill import *
 from pymongo import MongoClient
 import json
+import bson.json_util
 from bson.json_util import dumps
 from flask import *
 
@@ -33,6 +34,9 @@ def clean_db():
     students.drop()
 
 def add_student(student):
+    studentDict = student.__dict__
+    for x in range(0, len(studentDict["skills"])):
+        studentDict["skills"][x] = studentDict["skills"][x].__dict__
     students.insert(student.__dict__)
 
 def add_admin(admin):
@@ -154,36 +158,12 @@ def get_all_admins():
 '''
 @app.route("/getSkill", methods=['GET'])
 def get_skill():
-
-    'TODO: These are just constant values for now, later on they should be retreived from the database using the userID'
-    userID = request.args.get('userID');
-
-    CONST_SKILL_NAME_DESC = "skillName";
-    skillName1 = "HTML";
-    skillName2 = "Python";
-    skillName3 = "CSS";
-
-    CONST_SKILL_URL_DESC = "skillURL";
-    skillURL1 = "www.url1.com";
-    skillURL2 = "www.url2.com";
-    skillURL3 = "www.url3.com";
-
-    CONST_SKILL_COMPLETED_DESC = "skillConceptsCompleted";
-    skillPercentage1 = "43";
-    skillPercentage2 = "100";
-    skillPercentage3 = "0";
-
-    CONST_SKILL_CONCEPTS_DESC = "skillConcepts";
-    concepts1 = "concepts1value";
-    concepts2 = "concepts2value";
-    concepts3 = "concepts3value";
-
-    list = [
-        {CONST_SKILL_NAME_DESC: skillName1, CONST_SKILL_URL_DESC: skillURL1, CONST_SKILL_COMPLETED_DESC: skillPercentage1, CONST_SKILL_CONCEPTS_DESC: concepts1},
-        {CONST_SKILL_NAME_DESC: skillName2, CONST_SKILL_URL_DESC: skillURL2, CONST_SKILL_COMPLETED_DESC: skillPercentage2, CONST_SKILL_CONCEPTS_DESC: concepts2},
-        {CONST_SKILL_NAME_DESC: skillName3, CONST_SKILL_URL_DESC: skillURL3, CONST_SKILL_COMPLETED_DESC: skillPercentage3, CONST_SKILL_CONCEPTS_DESC: concepts3}
-    ]
-    return jsonify(skills = list);
+    output = None
+    studentID = request.args.get('studentID');
+    for aStudent in students.find({"id": int(studentID)}):
+        aStudent['_id']="discard this";
+        output = aStudent["skills"]           #since ID is unique, there should only be 1 student object returned
+    return jsonify(output)
 
 
 '''
@@ -269,9 +249,31 @@ def get_completed():
 
 
 def populate_db():
+    CONST_SKILL_NAME_DESC = "studentID";
+    skillName1 = "HTML";
+    skillName2 = "Python";
+    skillName3 = "CSS";
+
+    CONST_SKILL_URL_DESC = "skillURL";
+    skillURL1 = "www.url1.com";
+    skillURL2 = "www.url2.com";
+    skillURL3 = "www.url3.com";
+
+    CONST_SKILL_COMPLETED_DESC = "skillConceptsCompleted";
+    skillPercentage1 = "43";
+    skillPercentage2 = "100";
+    skillPercentage3 = "0";
+
+    CONST_SKILL_CONCEPTS_DESC = "skillConcepts";
+    concepts1 = "concepts1value";
+    concepts2 = "concepts2value";
+    concepts3 = "concepts3value";
+
     dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin', 'admin1@pfa.com')
-    dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com')
+    dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com',None)
+    dummyStudent2 = Student('Bob', 'Well', 2, 10, 'student2@pfa.com', None)
     add_student(dummyStudent)
+    add_student(dummyStudent2)
     add_admin(dummyAdmin)
 
 
