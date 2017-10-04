@@ -43,4 +43,28 @@ Example:
     }
 ``` 
 
+<h4>getSkillConcept</h4>
+
+```
+Description:
+    Returns the skill concepts for a specific userID and skillType
+
+Sample URL:
+    http://127.0.0.1:5000/getSkillConcept?userID=USER_ID&skillType=SKILL_TYPE
+
+Params:
+    userID, skillType
+    
+Returns:
+    JSON
+
+Example:
+    {
+      "completed": true, 
+      "extLearnLinks": "www.google.com,www.bing.com,www.ask.com", 
+      "location": "1,2", 
+      "skillDescription": "Python skill concepts", 
+      "skillTitle": "Python"
+    }
+```
 
