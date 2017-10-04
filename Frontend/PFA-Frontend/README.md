@@ -3,11 +3,14 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.
 
 ## What you will need
-- install node 6.9.0+ 
+- install node 8.0.0 
 - install angular CLI  ```$ npm install -g @angular/cli ```
 
 if this is the first time you have downloaded this repo you will need to run this command in the root directory. 
 ```$ npm install ```
+## Styling 
+- Angular Bootstrap with Material Design https://mdbootstrap.com/angular/
+- Quick start guide https://mdbootstrap.com/angular/5min-quickstart/
 
 ## Development server
 

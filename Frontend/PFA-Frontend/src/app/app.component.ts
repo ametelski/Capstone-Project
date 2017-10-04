@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <div class = "grid-container">
-      <app-navbar class="grid-item navbar"></app-navbar>
+      <app-navbar></app-navbar>
       <router-outlet></router-outlet>
     </div>
     `
