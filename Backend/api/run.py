@@ -192,32 +192,23 @@ def get_skill():
         }
 
 '''
-@app.route('/getSkillConcept', methods=['GET'])
+@app.route('/getSkillConcepts', methods=['GET'])
 def get_skill_concept():
 
     """TODO: Returns skill concepts based on the USER ID from the database """
 
-    userID = request.args.get('userID');
+    studentID = request.args.get('studentID');
     skillType = request.args.get('skillType');
+    output = None
 
-    CONST_SKILL_TITLE       = "skillTitle";
-    CONST_SKILL_DESC        = "skillDescription";
-    CONST_SKILL_LINK        = "extLearnLinks";
-    CONST_SKILL_COMPLETED   = "completed";
-    CONST_SKILL_LOCATION    = "location";
+    skillConcepts = None
+    for aStudent in students.find({"id": int(studentID)}):
+        for aSkill in aStudent["skills"]:
+            if aSkill["skillName"].lower() == skillType.lower():
+                output = aSkill["skillConcepts"]
+                return jsonify(output)
 
-    skillTitle  = "Python";
-    skillDesc   = "Python skill concepts";
-    extLinks    = "www.google.com,www.bing.com,www.ask.com";
-    completed   = True;
-    location    = "1,2";
-
-    return jsonify({CONST_SKILL_TITLE : userID,
-                    CONST_SKILL_DESC : skillType,
-                    CONST_SKILL_LINK : extLinks,
-                    CONST_SKILL_COMPLETED : completed,
-                    CONST_SKILL_LOCATION : location});
-
+    return "Could not find skill concepts"
 '''
     Description:
         Returns a boolean that depending if the skill concept is completed by the given user ID.
