@@ -37,6 +37,8 @@ def add_student(student):
     studentDict = student.__dict__
     for x in range(0, len(studentDict["skills"])):
         studentDict["skills"][x] = studentDict["skills"][x].__dict__
+        for i in range(0, len(studentDict["skills"][x]["skillConcepts"])):
+            studentDict["skills"][x]["skillConcepts"][i] = studentDict["skills"][x]["skillConcepts"][i].__dict__
     students.insert(student.__dict__)
 
 def add_admin(admin):
@@ -84,9 +86,13 @@ def hello():
 @app.route("/students", methods=['GET'])
 def get_all_students():
     output = []
-    for student in students.find():
-        output.append({'firstName' : student['firstName'], 'lastName' : student['lastName'], \
-            'id' : student['id'], 'age' : student['age'], 'email' : student['email']})
+    #Output everything in Students
+    for aStudent in students.find():
+        aStudent['_id'] = "discard this"
+        output.append(aStudent)
+    #Output hardcoded, will have to change everytime design of student is changed
+    '''    output.append({'firstName' : student['firstName'], 'lastName' : student['lastName'], \
+            'id' : student['id'], 'age' : student['age'], 'email' : student['email']}) '''
     return jsonify({'students' : output})
 
 
@@ -249,26 +255,6 @@ def get_completed():
 
 
 def populate_db():
-    CONST_SKILL_NAME_DESC = "studentID";
-    skillName1 = "HTML";
-    skillName2 = "Python";
-    skillName3 = "CSS";
-
-    CONST_SKILL_URL_DESC = "skillURL";
-    skillURL1 = "www.url1.com";
-    skillURL2 = "www.url2.com";
-    skillURL3 = "www.url3.com";
-
-    CONST_SKILL_COMPLETED_DESC = "skillConceptsCompleted";
-    skillPercentage1 = "43";
-    skillPercentage2 = "100";
-    skillPercentage3 = "0";
-
-    CONST_SKILL_CONCEPTS_DESC = "skillConcepts";
-    concepts1 = "concepts1value";
-    concepts2 = "concepts2value";
-    concepts3 = "concepts3value";
-
     dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin', 'admin1@pfa.com')
     dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com',None)
     dummyStudent2 = Student('Bob', 'Well', 2, 10, 'student2@pfa.com', None)
