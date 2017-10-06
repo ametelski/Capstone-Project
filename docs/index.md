@@ -1,6 +1,8 @@
 <h1>Programming For All Project Documentation</h1>
-<h6>Author: Miguel Deniz</h6>
+<h6>Author: Miguel Deniz & Nguyen Dao</h6>
 <h6>Last Update: 10/3/17</h6>
+
+<h6>Swagger Version: https://app.swaggerhub.com/apis/ngdao/Capstone/1.0.0<h6>
 
 <h2>RESTful Service Calls</h2>
 <h4>getSkill</h4>
