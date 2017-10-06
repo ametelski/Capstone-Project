@@ -209,14 +209,15 @@ def get_skill_concept():
                 return jsonify(output)
 
     return "Could not find skill concepts"
+
 '''
     Description:
         Returns a boolean that depending if the skill concept is completed by the given user ID.
         
-        http://127.0.0.1:5000/completed?userID=12345&skillConcept=concept
+        http://127.0.0.1:5000/completed?studentID=12345&skillConcept=concept
     
     Params:
-        userID, skillConcept
+        studentID, skillType, skillTitle
         
     Returns:
         JSON
@@ -224,7 +225,7 @@ def get_skill_concept():
         {
           "completed": false, 
           "skillConcept": "concept", 
-          "userID": "200"
+          "studentID": "200"
         }
 '''
 @app.route('/completed', methods=['GET'])
@@ -232,17 +233,24 @@ def get_completed():
 
     '''TODO: Return completion based on the USER ID and SKILL CONCEPT from the database'''
 
-    userID = request.args.get('userID');
-    skillConcept = request.args.get('skillConcept');
+    studentID = request.args.get('studentID');
+    skillType = request.args.get('skillType');
+    skillTitle = request.args.get('skillTitle');
+    if studentID == None or skillTitle == None or skillType == None:
+        return "Bad parameter"
+    output = {}
 
-    CONST_COMPLETED_DESC = "completed";
-    completed = False;
+    for aStudent in students.find({"id": int(studentID)}):
+        for aSkill in aStudent["skills"]:
+            if aSkill["skillName"].lower() == skillType.lower():
+                for aConcept in aSkill["skillConcepts"]:
+                    if aConcept["skillTitle"].lower() == skillTitle.lower():
+                        output["completed"] = aConcept["completed"]
+                        output["skillTitle"] = aConcept["skillTitle"]
+                        output["studentID"] = studentID
+                        return jsonify(output)
 
-    return jsonify({
-        'userID' : userID,
-        'skillConcept' : skillConcept,
-        CONST_COMPLETED_DESC : completed
-    });
+    return "Could not fine the skillConcept"
 
 
 def populate_db():
