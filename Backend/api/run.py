@@ -188,7 +188,7 @@ def get_skill():
           "extLearnLinks": "www.google.com,www.bing.com,www.ask.com", 
           "location": "1,2", 
           "skillDescription": "Python skill concepts", 
-          "skillTitle": "Python"
+          "skillConceptName": "Python"
         }
 
 '''
@@ -217,7 +217,7 @@ def get_skill_concept():
         http://127.0.0.1:5000/completed?studentID=12345&skillConcept=concept
     
     Params:
-        studentID, skillType, skillTitle
+        studentID, skillType, skillConceptName
         
     Returns:
         JSON
@@ -235,8 +235,8 @@ def get_completed():
 
     studentID = request.args.get('studentID');
     skillType = request.args.get('skillType');
-    skillTitle = request.args.get('skillTitle');
-    if studentID == None or skillTitle == None or skillType == None:
+    skillConceptName = request.args.get('skillConceptName');
+    if studentID == None or skillConceptName == None or skillType == None:
         return "Bad parameter"
     output = {}
 
@@ -244,9 +244,9 @@ def get_completed():
         for aSkill in aStudent["skills"]:
             if aSkill["skillName"].lower() == skillType.lower():
                 for aConcept in aSkill["skillConcepts"]:
-                    if aConcept["skillTitle"].lower() == skillTitle.lower():
+                    if aConcept["skillConceptName"].lower() == skillConceptName.lower():
                         output["completed"] = aConcept["completed"]
-                        output["skillTitle"] = aConcept["skillTitle"]
+                        output["skillConceptName"] = aConcept["skillConceptName"]
                         output["studentID"] = studentID
                         return jsonify(output)
 
