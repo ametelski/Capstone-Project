@@ -44,45 +44,13 @@ def add_student(student):
 def add_admin(admin):
     admins.insert(admin.__dict__)
 
-'''
-    Description:
-        Returns a 'Hello World!' string.
-    
-    Params:
-        None
-        
-    Returns:
-        JSON with String
-'''
+
 @app.route("/")
 def hello():
     greeting = [{'greeting': 'Hello World!'}]
     return jsonify({'messages': greeting})
 
 
-'''
-    Description:
-        Returns a list of students currently stored in the database
-
-    Params:
-        None
-
-    Returns:
-        JSON
-
-        Example:
-            {
-                "students": [
-                    {
-                        "age": 12, 
-                        "email": "student1@pfa.com", 
-                        "firstName": "Timmy", 
-                        "id": 1, 
-                        "lastName": "Junior"
-                    }
-                ]
-            }
-'''
 @app.route("/students", methods=['GET'])
 def get_all_students():
     output = []
@@ -96,29 +64,7 @@ def get_all_students():
     return jsonify({'students' : output})
 
 
-'''
-    Description:
-        Returns a list of admins currently stored in the database
 
-    Params:
-        None
-
-    Returns:
-        JSON
-
-        Example:
-            {
-                "admins": [
-                    {
-                        "email": "admin1@pfa.com", 
-                        "firstName": "Cindy", 
-                        "id": 2, 
-                        "lastName": "Smith", 
-                        "role": "Admin"
-                    }
-                ]
-            }
-'''
 @app.route("/admins", methods=['GET'])
 def get_all_admins():
     output = []
@@ -128,39 +74,7 @@ def get_all_admins():
     return jsonify({'admins' : output})
 
 '''
-    Description:
-        Returns a list of all skills and their statuses for a specific user.
-        
-        http://127.0.0.1:5000/getSkill?userID=USER_ID
-    
-    Params:
-        userID
-    
-    Returns:
-        JSON
-        
-        {
-            "skills": [
-                {
-                    "skillConcepts": "concepts", 
-                    "skillConceptsCompleted": "45", 
-                    "skillName": "HTML", 
-                    "skillURL": "www.url0.com"
-                }, 
-                {
-                    "skillConcepts": "concepts", 
-                    "skillConceptsCompleted": "23", 
-                    "skillName": "Python", 
-                    "skillURL": "www.url1.com"
-                }, 
-                {
-                    "skillConcepts": "concepts", 
-                    "skillConceptsCompleted": "78", 
-                    "skillName": "CSS", 
-                    "skillURL": "www.url2.com"
-                }
-            ]
-        }
+    http://127.0.0.1:5000/getSkill?userID=USER_ID
 '''
 @app.route("/getSkill", methods=['GET'])
 def get_skill():
@@ -173,24 +87,7 @@ def get_skill():
 
 
 '''
-    Description:
-        Returns the skill concepts for a specific userID and skillType
-    
-        http://127.0.0.1:5000/getSkillConcept?userID=12345&skillType=Python
-
-    Params:
-        userID, skillType
-    Returns:
-        JSON
-        
-        {
-          "completed": true, 
-          "extLearnLinks": "www.google.com,www.bing.com,www.ask.com", 
-          "location": "1,2", 
-          "skillDescription": "Python skill concepts", 
-          "skillConceptName": "Python"
-        }
-
+    http://127.0.0.1:5000/getSkillConcept?userID=12345&skillType=Python
 '''
 @app.route('/getSkillConcepts', methods=['GET'])
 def get_skill_concept():
@@ -211,22 +108,7 @@ def get_skill_concept():
     return "Could not find skill concepts"
 
 '''
-    Description:
-        Returns a boolean that depending if the skill concept is completed by the given user ID.
-        
-        http://127.0.0.1:5000/completed?studentID=12345&skillConcept=concept
-    
-    Params:
-        studentID, skillType, skillConceptName
-        
-    Returns:
-        JSON
-        
-        {
-          "completed": false, 
-          "skillConcept": "concept", 
-          "studentID": "200"
-        }
+    http://127.0.0.1:5000/completed?studentID=12345&skillConcept=concept
 '''
 @app.route('/completed', methods=['GET'])
 def get_completed():
