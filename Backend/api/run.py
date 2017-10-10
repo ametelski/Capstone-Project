@@ -35,7 +35,7 @@ def clean_db():
 
 def add_student(student):
     jsonStudent = json.dumps(student, default=lambda o: o.__dict__)
-    objStudent = json.loads(jsonStr)
+    objStudent = json.loads(jsonStudent)
     students.insert(objStudent)
 
 
@@ -52,13 +52,11 @@ def hello():
 @app.route("/students", methods=['GET'])
 def get_all_students():
     output = []
-    #Output everything in Students
-    for aStudent in students.find():
-        aStudent['_id'] = "discard this"
-        output.append(aStudent)
-    #Output hardcoded, will have to change everytime design of student is changed
-    '''    output.append({'firstName' : student['firstName'], 'lastName' : student['lastName'], \
-            'id' : student['id'], 'age' : student['age'], 'email' : student['email']}) '''
+
+    for student in students.find():
+        student['_id'] = str(student['_id'])
+        output.append(student)
+
     return jsonify({'students' : output})
 
 
