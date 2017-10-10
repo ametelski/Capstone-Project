@@ -34,12 +34,10 @@ def clean_db():
     students.drop()
 
 def add_student(student):
-    studentDict = student.__dict__
-    for x in range(0, len(studentDict["skills"])):
-        studentDict["skills"][x] = studentDict["skills"][x].__dict__
-        for i in range(0, len(studentDict["skills"][x]["skillConcepts"])):
-            studentDict["skills"][x]["skillConcepts"][i] = studentDict["skills"][x]["skillConcepts"][i].__dict__
-    students.insert(student.__dict__)
+    jsonStr = json.dumps(student, default=lambda o: o.__dict__)
+    obj = json.loads(jsonStr)
+    students.insert(obj)
+
 
 def add_admin(admin):
     admins.insert(admin.__dict__)
@@ -137,8 +135,8 @@ def get_completed():
 
 def populate_db():
     dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin', 'admin1@pfa.com')
-    dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com',None)
-    dummyStudent2 = Student('Bob', 'Well', 2, 10, 'student2@pfa.com', None)
+    dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com')
+    dummyStudent2 = Student('Bob', 'Well', 2, 10, 'student2@pfa.com')
     add_student(dummyStudent)
     add_student(dummyStudent2)
     add_admin(dummyAdmin)

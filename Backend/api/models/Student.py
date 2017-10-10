@@ -5,16 +5,15 @@
 
 from .Person import *
 from .Skill import *
+import json
 
 class Student(Person):
+	defaultSkills = [Skill("HTML", "www.linkToTheTree.com"), \
+					Skill("Python", "www.linkToTheTree.com"), \
+					Skill("CSS", "www.linkToTheTree.com")
+					]
 
-	def __init__(self, first, last, id, age, email, skills):
+	def __init__(self, first, last, id, age, email, skills=defaultSkills):
 		Person.__init__(self, first, last, id, email)
 		self.age = age
-		if(skills != None):
-			self.skills = skills
-		else:	#Default skills
-			skill1 = Skill("HTML", "www.linkToTheTree.com", None, 0)
-			skill2 = Skill("Python", "www.linkToTheTree.com", None, 0)
-			skill3 = Skill("CSS", "www.linkToTheTree.com", None, 0)
-		self.skills = [skill1,skill2,skill3]
+		self.skills = skills
