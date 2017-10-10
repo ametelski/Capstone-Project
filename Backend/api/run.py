@@ -34,9 +34,9 @@ def clean_db():
     students.drop()
 
 def add_student(student):
-    jsonStr = json.dumps(student, default=lambda o: o.__dict__)
-    obj = json.loads(jsonStr)
-    students.insert(obj)
+    jsonStudent = json.dumps(student, default=lambda o: o.__dict__)
+    objStudent = json.loads(jsonStr)
+    students.insert(objStudent)
 
 
 def add_admin(admin):
