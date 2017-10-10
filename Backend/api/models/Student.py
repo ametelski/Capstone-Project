@@ -5,7 +5,6 @@
 
 from .Person import *
 from .Skill import *
-import json
 
 class Student(Person):
 	defaultSkills = [Skill("HTML", "www.linkToTheTree.com"), \

@@ -78,7 +78,7 @@ def get_skill():
     studentID = request.args.get('studentID');
     for aStudent in students.find({"id": int(studentID)}):
         aStudent['_id']="discard this";
-        output = aStudent["skills"]           #since ID is unique, there should only be 1 student object returned
+        output = aStudent["skills"]
     return jsonify(output)
 
 

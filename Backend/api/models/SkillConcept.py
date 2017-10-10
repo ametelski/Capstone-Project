@@ -5,7 +5,6 @@
 
 
 from .ExtLearnLink import *
-import json
 
 class SkillConcept():
 
