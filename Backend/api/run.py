@@ -65,25 +65,25 @@ def get_all_students():
 def get_all_admins():
     output = []
     for admin in admins.find():
-        output.append({'firstName' : admin['firstName'], 'lastName' : admin['lastName'], \
-            'id' : admin['id'], 'role' : admin['role'], 'email' : admin['email']})
+        admin['_id'] = str(admin['_id'])
+        output.append(admin)
     return jsonify({'admins' : output})
 
 '''
-    http://127.0.0.1:5000/getSkill?userID=USER_ID
+    http://127.0.0.1:5000/getSkill?studentID={INTEGER}
 '''
 @app.route("/getSkill", methods=['GET'])
 def get_skill():
     output = None
     studentID = request.args.get('studentID');
     for aStudent in students.find({"id": int(studentID)}):
-        aStudent['_id']="discard this";
+        aStudent['_id']=str(aStudent['_id'])
         output = aStudent["skills"]
     return jsonify(output)
 
 
 '''
-    http://127.0.0.1:5000/getSkillConcept?userID=12345&skillType=Python
+    http://127.0.0.1:5000/getSkillConcepts?studentID=12345&skillType=Python
 '''
 @app.route('/getSkillConcepts', methods=['GET'])
 def get_skill_concept():
@@ -99,9 +99,9 @@ def get_skill_concept():
         for aSkill in aStudent["skills"]:
             if aSkill["skillName"].lower() == skillType.lower():
                 output = aSkill["skillConcepts"]
-                return jsonify(output)
 
-    return "Could not find skill concepts"
+    #todo handle instances where no skillConcepts are returned
+    return jsonify({'skillConcepts': output})
 
 '''
     http://127.0.0.1:5000/completed?studentID=12345&skillConcept=concept
