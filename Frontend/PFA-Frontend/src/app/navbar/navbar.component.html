@@ -1,14 +1,14 @@
-<div class="container mb-1">
+<div class="container-fluid mb-1">
 <mdb-navbar SideClass="navbar navbar-expand-xl navbar-dark indigo">
   <logo>
     <a class= "navbar-brand" [routerLink]="['/home']">PFA </a>
   </logo>
   <links>
-      <ul class="navbar-nav right">
-          <li class="nav-item right">
+      <ul flex class="navbar-nav float-right">
+          <li class="nav-item  float-right">
               <a [routerLink]="['/sign-up']" class="nav-link waves-light" mdbRippleRadius>Sign up</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item  float-right">
               <a class="nav-link waves-light" mdbRippleRadius>Login</a>
           </li>
       </ul>

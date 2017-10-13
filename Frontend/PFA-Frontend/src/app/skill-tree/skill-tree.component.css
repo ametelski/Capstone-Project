@@ -1,0 +1,11 @@
+.my-contanier{
+  background: black;
+  border: 1px black;
+}
+.my-col{
+  background: lightgreen;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px; 
+  text-align: center; 
+}
