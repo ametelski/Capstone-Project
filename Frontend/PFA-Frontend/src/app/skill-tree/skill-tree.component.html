@@ -5,9 +5,14 @@
     <div class="col my-col z-depth-5">
     </div>
     <div class="col my-col z-depth-5">
-      <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-        triggers="focus" mdbRippleRadius>
-        Some text
+      <button type="button" class="btn waves-light">
+<md-dialog-content class="container">
+<h1> What is going on here</h1>
+    <app-skill-tree-popove [popOver]='skillConcept'></app-skill-tree-popove>
+</md-dialog-content>
+      This button
+
+
       </button>
     </div>
     <div class="col my-col z-depth-5">
