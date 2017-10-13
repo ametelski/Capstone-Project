@@ -9,6 +9,6 @@ export class SkillpathService {
   constructor(private http: Http) { }
 
   getSkillPath(): Observable <ISkillPath[]> {
-    return this.http.get('http://localhost:8080/greeting').map(res => res.json());
+    return this.http.get('http://localhost:5000/').map(res => res.json());
   }
 }
