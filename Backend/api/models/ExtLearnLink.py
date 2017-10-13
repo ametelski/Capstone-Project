@@ -8,7 +8,3 @@ class ExtLearnLink():
 	def __init__(self, shortName, url):
 		self.shortName = shortName
 		self.url = url
-
-
-	def __str__(self):
-		return "Short Name: {}, Url: {}".format(self.shortName, self.url)

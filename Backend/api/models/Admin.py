@@ -3,7 +3,7 @@
 # Programming For All
 # Author: Gabriel Fabian, 2017
 
-from Person import *
+from .Person import *
 
 class Admin(Person):
 
