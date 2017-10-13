@@ -12,6 +12,7 @@ from pymongo import MongoClient
 import json
 from bson.json_util import dumps
 from flask import *
+from flask_cors import CORS
 
 
 # if your instance of mongo is hosted elsewhere, change the params here to match
@@ -22,6 +23,7 @@ students = db.students
 
 
 app = Flask(__name__)
+CORS(app)
 title = "Programming for All"
 heading = "PFA"
 
