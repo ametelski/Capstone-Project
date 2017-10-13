@@ -28,3 +28,5 @@ Programming for All
     - Windows user: You will need to add pip to environment path variable. This video will show you how to do that. https://www.youtube.com/watch?v=mFqdeX1C-8M
 - Pymongo
     -  Mac/Windows: http://api.mongodb.com/python/current/installation.html
+- Flask-CORS
+	- This is a Flask extension that will allow handling of CORS. Simply run $sudo pip install -U flask-cors
