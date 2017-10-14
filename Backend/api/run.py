@@ -52,14 +52,45 @@ def hello():
 @app.route("/students", methods=['GET'])
 def get_all_students():
     output = []
-
     for student in students.find():
         student['_id'] = str(student['_id'])
         output.append(student)
 
     return jsonify({'students' : output})
 
+@app.route("/students/<int:studentId>", methods=['GET'])
+def get_student_by_id(studentId):
+    output = []
+    for student in students.find({'id': studentId}):
+        student['_id'] = str(student['_id'])
+        output.append(student)
 
+    return jsonify({'student' : output})
+
+'''
+    skillConcept = Python || HTML || CSS
+'''
+@app.route('/students/<int:studentId>/<skillConcept>', methods=['GET'])
+def get_student_skill_concepts(studentId, skillConcept):
+    studentID = studentId
+    skillType = skillConcept
+    output = None
+
+    skillConcepts = None
+    for aStudent in students.find({"id": int(studentID)}):
+        for aSkill in aStudent["skills"]:
+            if aSkill["skillName"].lower() == skillType.lower():
+                output = aSkill["skillConcepts"]
+                
+    return jsonify({'skillConcepts': output})
+
+@app.route("/students/<int:studentId>/skills", methods=['GET'])
+def get_student_skills(studentId):
+    output = []
+    for aStudent in students.find({"id": studentId}):
+        aStudent['_id']=str(aStudent['_id'])
+        output = aStudent["skills"]
+    return jsonify({'skills': output})
 
 @app.route("/admins", methods=['GET'])
 def get_all_admins():
@@ -68,40 +99,6 @@ def get_all_admins():
         admin['_id'] = str(admin['_id'])
         output.append(admin)
     return jsonify({'admins' : output})
-
-'''
-    http://127.0.0.1:5000/getSkill?studentID={INTEGER}
-'''
-@app.route("/getSkill", methods=['GET'])
-def get_skill():
-    output = None
-    studentID = request.args.get('studentID');
-    for aStudent in students.find({"id": int(studentID)}):
-        aStudent['_id']=str(aStudent['_id'])
-        output = aStudent["skills"]
-    return jsonify(output)
-
-
-'''
-    http://127.0.0.1:5000/getSkillConcepts?studentID=12345&skillType=Python
-'''
-@app.route('/getSkillConcepts', methods=['GET'])
-def get_skill_concept():
-
-    """TODO: Returns skill concepts based on the USER ID from the database """
-
-    studentID = request.args.get('studentID');
-    skillType = request.args.get('skillType');
-    output = None
-
-    skillConcepts = None
-    for aStudent in students.find({"id": int(studentID)}):
-        for aSkill in aStudent["skills"]:
-            if aSkill["skillName"].lower() == skillType.lower():
-                output = aSkill["skillConcepts"]
-
-    #todo handle instances where no skillConcepts are returned
-    return jsonify({'skillConcepts': output})
 
 '''
     http://127.0.0.1:5000/completed?studentID=12345&skillConcept=concept
