@@ -68,9 +68,6 @@ def get_student_by_id(studentId):
 
     return jsonify({'student' : output})
 
-'''
-    skillConcept = Python || HTML || CSS
-'''
 @app.route('/students/<int:studentId>/<skillConcept>', methods=['GET'])
 def get_student_skill_concepts(studentId, skillConcept):
     studentID = studentId
