@@ -4,13 +4,13 @@
 # Author: Gabriel Fabian, 2017
 
 
-from ExtLearnLink import *
+from .ExtLearnLink import *
 
 class SkillConcept():
 
-	def __init__(self, skillTitle, skillDescription, location, extLearnLinks=None, completed=False):
-		self.skillTitle = skillTitle
+	def __init__(self, skillConceptName, skillDescription, location, extLearnLinks=None, completed=False):
+		self.skillConceptName = skillConceptName
 		self.skillDescription = skillDescription
-		self.extLearnLinks = extLearnLinks 
-		self.completed = completed  
+		self.extLearnLinks = extLearnLinks or []
+		self.completed = completed
 		self.location = location

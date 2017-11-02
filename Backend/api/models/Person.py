@@ -3,6 +3,9 @@
 # Programming For All
 # Author: Gabriel Fabian, 2017
 
+import json
+import bson.json_util
+
 class Person():
 
 	def __init__(self, first, last, id, email):
@@ -10,6 +13,3 @@ class Person():
 		self.lastName = last
 		self.id = id
 		self.email = email
-
-	def __str__(self):
-		return "First Name: {}, Last Name: {}, ID: {}".format(self.firstName, self.lastName, self.id)
