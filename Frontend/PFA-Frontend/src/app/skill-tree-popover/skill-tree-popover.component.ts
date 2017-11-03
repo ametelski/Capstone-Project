@@ -8,9 +8,12 @@ import { ISkillConcept } from '../Models/skillConcept.model';
 })
 export class SkillTreePopoverComponent implements OnInit {
  @Input()popOver: ISkillConcept
+ @Input()showModal: boolean
+  @Input()fluid: any
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
