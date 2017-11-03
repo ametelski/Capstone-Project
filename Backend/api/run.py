@@ -23,6 +23,7 @@ client = MongoClient('localhost', 27017)
 db = client.ProgrammingForAll
 admins = db.admins
 students = db.students
+testObjs = db.testObjs
 
 
 app = Flask(__name__)
@@ -54,14 +55,42 @@ def hello():
 @app.route("/students", methods=['GET'])
 def get_all_students():
     output = []
-
     for student in students.find():
         student['_id'] = str(student['_id'])
         output.append(student)
 
     return jsonify({'students' : output})
 
+@app.route("/students/<int:studentId>", methods=['GET'])
+def get_student_by_id(studentId):
+    output = None
+    for student in students.find({'id': studentId}):
+        student['_id'] = str(student['_id'])
+        output = student
 
+    return jsonify({'student' : output})
+
+@app.route('/students/<int:studentId>/<skillConcept>', methods=['GET'])
+def get_student_skill_concepts(studentId, skillConcept):
+    studentID = studentId
+    skillType = skillConcept
+    output = None
+
+    skillConcepts = None
+    for aStudent in students.find({"id": int(studentID)}):
+        for aSkill in aStudent["skills"]:
+            if aSkill["skillName"].lower() == skillType.lower():
+                output = aSkill["skillConcepts"]
+
+    return jsonify({'skillConcepts': output})
+
+@app.route("/students/<int:studentId>/skills", methods=['GET'])
+def get_student_skills(studentId):
+    output = []
+    for aStudent in students.find({"id": studentId}):
+        aStudent['_id']=str(aStudent['_id'])
+        output = aStudent["skills"]
+    return jsonify({'skills': output})
 
 @app.route("/admins", methods=['GET'])
 def get_all_admins():
@@ -72,65 +101,18 @@ def get_all_admins():
     return jsonify({'admins' : output})
 
 '''
-    http://127.0.0.1:5000/getSkill?studentID={INTEGER}
-'''
-@app.route("/getSkill", methods=['GET'])
-def get_skill():
-    output = None
-    studentID = request.args.get('studentID');
-    for aStudent in students.find({"id": int(studentID)}):
-        aStudent['_id']=str(aStudent['_id'])
-        output = aStudent["skills"]
-    return jsonify(output)
-
-
-'''
-    http://127.0.0.1:5000/getSkillConcepts?studentID=12345&skillType=Python
-'''
-@app.route('/getSkillConcepts', methods=['GET'])
-def get_skill_concept():
-
-    """TODO: Returns skill concepts based on the USER ID from the database """
-
-    studentID = request.args.get('studentID');
-    skillType = request.args.get('skillType');
-    output = None
-
-    skillConcepts = None
-    for aStudent in students.find({"id": int(studentID)}):
-        for aSkill in aStudent["skills"]:
-            if aSkill["skillName"].lower() == skillType.lower():
-                output = aSkill["skillConcepts"]
-
-    #todo handle instances where no skillConcepts are returned
-    return jsonify({'skillConcepts': output})
-
-'''
     http://127.0.0.1:5000/completed?studentID=12345&skillConcept=concept
 '''
-@app.route('/completed', methods=['GET'])
-def get_completed():
+@app.route('/students/<int:studentId>/skillConcepts/completed', methods=['GET'])
+def get_completed(studentId):
+    output = []
+    student = students.find_one({"id": studentId})
+    for skill in student['skills']:
+        for skillConcept in skill['skillConcepts']:
+            if skillConcept['completed'] == True:
+                output.append(skillConcept)
 
-    '''TODO: Return completion based on the USER ID and SKILL CONCEPT from the database'''
-
-    studentID = request.args.get('studentID');
-    skillType = request.args.get('skillType');
-    skillConceptName = request.args.get('skillConceptName');
-    if studentID == None or skillConceptName == None or skillType == None:
-        return "Bad parameter"
-    output = {}
-
-    for aStudent in students.find({"id": int(studentID)}):
-        for aSkill in aStudent["skills"]:
-            if aSkill["skillName"].lower() == skillType.lower():
-                for aConcept in aSkill["skillConcepts"]:
-                    if aConcept["skillConceptName"].lower() == skillConceptName.lower():
-                        output["completed"] = aConcept["completed"]
-                        output["skillConceptName"] = aConcept["skillConceptName"]
-                        output["studentID"] = studentID
-                        return jsonify(output)
-
-    return "Could not fine the skillConcept"
+    return jsonify({'skillConcepts': output})
 
 
 def populate_db():
