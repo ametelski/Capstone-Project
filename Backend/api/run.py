@@ -33,6 +33,7 @@ title = 'Programming for All'
 heading = 'PFA'
 
 
+
 def clean_db():
     admins.drop()
     students.drop()
@@ -82,6 +83,7 @@ def get_student_by_id(studentId):
 '''
 @app.route('/students/<int:studentId>/<skillName>', methods=['GET'])
 def get_student_skill_concepts(studentId, skillName):
+
     output = None
     aStudent = students.find_one({'id': int(studentId)})
     for aSkill in aStudent['skills']:
