@@ -78,19 +78,18 @@ def get_student_by_id(studentId):
     return jsonify({'student' : output})
 
 '''
-    skillConcept = Python || HTML || CSS
+    skill = Python || HTML || CSS
 '''
-@app.route('/students/<int:studentId>/<skillConcept>', methods=['GET'])
-def get_student_skill_concepts(studentId, skillConcept):
-    studentID = studentId
-    skillType = skillConcept
+@app.route('/students/<int:studentId>/<skillName>', methods=['GET'])
+def get_student_skill_concepts(studentId, skillName):
     output = None
-
-    skillConcepts = None
-    for aStudent in students.find({'id': int(studentID)}):
-        for aSkill in aStudent['skills']:
-            if aSkill['skillName'].lower() == skillType.lower():
-                output = aSkill['skillConcepts']
+    aStudent = students.find_one({'id': int(studentId)})
+    for aSkill in aStudent['skills']:
+        if aSkill['skillName'].lower() == skillName.lower():
+            for skillConceptId in aSkill['skillConceptsIds']:
+                concept = skillConcepts.find_one({'id':skillConceptId})
+                concept['_id'] = str(concept['_id'])
+                output.append(concept)
 
     return jsonify({'skillConcepts': output})
 
@@ -141,6 +140,23 @@ def get_completed(studentId):
 
     return jsonify({'skillConcepts': output})
 
+
+#TODO: check up duplicate of ID
+@app.route('/students/<int:studentId>/skillName/<string:skillName>/skillConceptId/<int:skillConceptId>/mark_completed', methods=['POST'])
+def mark_concept_completed(studentId, skillName, skillConceptId):
+    aStudent = students.find_one({'id':studentId})
+    for aSkill in aStudent['skills']:
+        if aSkill['skillName'].lower() == skillName.lower():
+            aSkill['skillConceptsCompleted'].append(skillConceptId)
+            students.update(
+                {
+                    'id':studentId,
+                },
+                {
+                    '$set':{'skills': aStudent['skills']}
+                }
+            )
+    return jsonify({})
 
 def populate_db():
     dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin', 'admin1@pfa.com')

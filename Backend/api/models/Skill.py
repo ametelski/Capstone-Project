@@ -8,10 +8,10 @@ import json
 
 class Skill():
 
-	defaultSkillConcepts = [1,2,3]
+	defaultSkillConceptIds = [1,2,3]
 
-	def __init__(self, skillName, skillUrl, skillConcepts=defaultSkillConcepts, skillConceptsCompleted=[1,2]):
+	def __init__(self, skillName, skillUrl, skillConceptsIds=defaultSkillConceptIds, skillConceptsCompleted=[1,2]):
 		self.skillName = skillName
 		self.skillUrl = skillUrl
-		self.skillConcepts = skillConcepts
+		self.skillConceptsIds = skillConceptsIds
 		self.skillConceptsCompleted = skillConceptsCompleted
