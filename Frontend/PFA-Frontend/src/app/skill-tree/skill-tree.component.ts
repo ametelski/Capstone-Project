@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ISkillConcept } from '../Models/skillConcept.model';
+import { SkillpathService } from '../skillpath.service';
 
 @Component({
   selector: 'app-skill-tree',
@@ -7,15 +8,19 @@ import { ISkillConcept } from '../Models/skillConcept.model';
   styleUrls: ['./skill-tree.component.css']
 })
 export class SkillTreeComponent implements OnInit {
-  skillConcept: ISkillConcept = {
-    skillTitle: 'loops',
-    skillDescriptionL: 'This module will go over loops',
-    extLearnLinks: ['www.google.com'],
-    completed: false
-  }
-  constructor() { }
+  @Input() skillConcept: ISkillConcept[]
+
+
+  // = {
+  //   skillTitle: 'loops',
+  //   skillDescriptionL: 'This module will go over loops',
+  //   extLearnLinks: ['www.google.com'],
+  //   completed: false
+  // }
+  constructor(private skill: SkillpathService) { }
 
   ngOnInit() {
+
   }
 
 }
