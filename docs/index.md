@@ -12,37 +12,104 @@ Description:
     Returns a list of all skills and their statuses for a specific user.
 
 Sample URL:
-    "http://127.0.0.1:5000/getSkill?userID=USER_ID"
+    "http://127.0.0.1:5000/students/<int:studentID>/skills
 
 Parameters:
-    userID
+    studentID
 
 Returns:
     JSON
         
-Example:
+Example Return:
     {
-        "skills": [
-            {
-                "skillConcepts": "concepts", 
-                "skillConceptsCompleted": "45", 
-                "skillName": "HTML", 
-                "skillURL": "www.url0.com"
-            }, 
-            {
-                "skillConcepts": "concepts", 
-                "skillConceptsCompleted": "23", 
-                "skillName": "Python", 
-                "skillURL": "www.url1.com"
-            }, 
-            {
-                "skillConcepts": "concepts", 
-                "skillConceptsCompleted": "78", 
-                "skillName": "CSS", 
-                "skillURL": "www.url2.com"
-            }
-        ]
-    }
+  "skills": [
+    {
+      "skillConcepts": [
+        {
+          "completed": false, 
+          "description": "to help kids with...", 
+          "extLearnLinks": [
+            "www.link1.com", 
+            "www.link2.com"
+          ], 
+          "id": 1, 
+          "location": "R1C2", 
+          "skillConceptName": "Repetition"
+        }, 
+        {
+          "completed": true, 
+          "description": "Student Has COMPLETED this MODULE...", 
+          "extLearnLinks": [
+            "www.link1.com", 
+            "www.link2.com"
+          ], 
+          "id": 2, 
+          "location": "R2C1", 
+          "skillConceptName": "Condition"
+        }, 
+        {
+          "completed": false, 
+          "description": "to help kids with...", 
+          "extLearnLinks": [
+            "www.link1.com", 
+            "www.link2.com"
+          ], 
+          "id": 3, 
+          "location": "R2C3", 
+          "skillConceptName": "Procedural"
+        }
+      ], 
+      "skillConceptsCompleted": [
+        1, 
+        2
+      ], 
+      "skillName": "HTML", 
+      "skillUrl": "www.linkToTheTree.com"
+    }, 
+    {
+      "skillConcepts": [
+        {
+          "completed": false, 
+          "description": "to help kids with...", 
+          "extLearnLinks": [
+            "www.link1.com", 
+            "www.link2.com"
+          ], 
+          "id": 1, 
+          "location": "R1C2", 
+          "skillConceptName": "Repetition"
+        }, 
+        {
+          "completed": true, 
+          "description": "Student Has COMPLETED this MODULE...", 
+          "extLearnLinks": [
+            "www.link1.com", 
+            "www.link2.com"
+          ], 
+          "id": 2, 
+          "location": "R2C1", 
+          "skillConceptName": "Condition"
+        }, 
+        {
+          "completed": false, 
+          "description": "to help kids with...", 
+          "extLearnLinks": [
+            "www.link1.com", 
+            "www.link2.com"
+          ], 
+          "id": 3, 
+          "location": "R2C3", 
+          "skillConceptName": "Procedural"
+        }
+      ], 
+      "skillConceptsCompleted": [
+        1, 
+        2
+      ], 
+      "skillName": "Python", 
+      "skillUrl": "www.linkToTheTree.com"
+    }, 
+    ...
 ``` 
 
 <h4>getSkillConcept</h4>
