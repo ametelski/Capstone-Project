@@ -8,9 +8,9 @@ from .ExtLearnLink import *
 
 class SkillConcept():
 
-	def __init__(self, skillConceptName, skillDescription, location, extLearnLinks=None, completed=False):
+	def __init__(self, skillConceptName, id, description, location, extLearnLinks=None, completed=False):
 		self.skillConceptName = skillConceptName
-		self.skillDescription = skillDescription
+		self.id = id
+		self.description = description
 		self.extLearnLinks = extLearnLinks or []
-		self.completed = completed
 		self.location = location
