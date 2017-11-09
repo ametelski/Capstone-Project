@@ -1,39 +1,24 @@
 <div class="container my-container" style="text-align:center; ">
 <!--https://mdbootstrap.com/angular/advanced/modals/ -->
-  <button type="button" class="btn btn-primary waves-light myTestButton" data-toggle="modal" data-target="#basicExample" (click)="fluid.show()" mdbRippleRadius>
-    Do Something
+<button type="button" class="btn btn-primary waves-light myTestButton" data-toggle="modal" data-target="#basicExample" (click)="fluid.show()" mdbRippleRadius>
+  {{getName(0)}}
   </button>
   <div mdbModal  #fluid="mdb-modal" class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="tfalse">
     <div class="modal-dialog modal-full-height modal-right" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title w-100" id="myModalLabel">Do something modal</h4>
+                <h4 class="modal-title w-100" id="myModalLabel">{{getName(0)}}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fluid.hide()">
                     <span aria-hidden="false">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>In this area we are going to place text that will describe the task that they need to complete
+                <p>{{getDescription(0)}}
                 </p>
 
                 <ul class="list-group z-depth-0">
-                    <li class="list-group-item justify-content-between">
-                        <a href="https://www.codecademy.com/" target="_blank">codecademy</a>
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        <a href="http://www.dungeonsanddevelopers.com/" target="_blank">Dungeons and Developers</a>
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        Morbi leo risus
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        Cras justo odio
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        Dapibus ac facilisis in
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        Morbi leo risus
+                    <li *ngFor="let link of getExternalLinks(0)" class="list-group-item justify-content-between">
+                        <a [href]= "link">codecademy</a>
                     </li>
                 </ul>
             </div>
@@ -46,124 +31,4 @@
   </div>
   <img src="../../assets/Tree.png">
 
-  <!-- <div class="row ">
-    <div class="col my-col z-depth-5">
-    </div>
-    <div class="col my-col z-depth-5">
-    </div>
-    <div class="col my-col z-depth-5">
-      <button type="button" class="btn waves-light">
-<md-dialog-content class="container">
-<h1> What is going on here</h1>
-    <app-skill-tree-popove [popOver]='skillConcept'></app-skill-tree-popove>
-</md-dialog-content>
-      This button
-
-
-      </button>
-    </div>
-    <div class="col my-col z-depth-5">
-    </div>
-    <div class="col my-col z-depth-5">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col my-col">
-    </div>
-    <div class="col my-col">
-        <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-        triggers="focus" mdbRippleRadius>
-        Some text
-      </button>
-    </div>
-    <div class="col my-col .mx-auto">
-      <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-        triggers="focus" mdbRippleRadius>
-        Some text
-      </button>
-    </div>
-    <div class="col my-col">
-        <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-        triggers="focus" mdbRippleRadius>
-        Some text
-      </button>
-    </div>
-    <div class="col my-col">
-    </div>
-  </div>
-
-  <div class="row">
-      <div class="col my-col">
-          <button type="button" class="btn btn btn-primary waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn btn btn-primary waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col .mx-auto">
-        <button type="button" class="btn btn btn-primary waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-    </div>
-
-  <div class="row">
-      <div class="col my-col">
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col .mx-auto">
-        <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-      </div>
-  </div>
-
-  <div class="row">
-      <div class="col my-col">
-      </div>
-      <div class="col my-col">
-      </div>
-      <div class="col my-col .mx-auto">
-        <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-      </div>
-      <div class="col my-col">
-      </div>
-  </div> -->
 </div>
