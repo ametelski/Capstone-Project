@@ -87,7 +87,7 @@ def get_student_skill_concepts(studentId, skillName):
     output = None
     aStudent = students.find_one({'id': int(studentId)})
     for aSkill in aStudent['skills']:
-        if aSkill['skillName'].lower() == skillName.lower():
+        if aSkill['name'].lower() == skillName.lower():
             for skillConceptId in aSkill['skillConceptsIds']:
                 concept = skillConcepts.find_one({'id':skillConceptId})
                 concept['_id'] = str(concept['_id'])
@@ -117,8 +117,8 @@ def get_skill_concept(skillConceptId):
     skillConcept['_id'] = str(skillConcept['_id'])
     return jsonify({'skillConcept': skillConcept})
 
-@app.route('/skillConcepts/<int:skillConceptId>/dataField/<string:dataField>', methods=['POST'])
-def edit_skill_concept(skillConceptId,dataField):
+@app.route('/skillConcepts/<int:skillConceptId>/<string:dataField>', methods=['POST'])
+def edit_skill_concept_description(skillConceptId,dataField):
     value = request.json['value']
     skillConcepts.update_one({'id':skillConceptId}, {'$set': {dataField:value}})
     resultConcept = skillConcepts.find_one({'id':skillConceptId})
@@ -132,9 +132,9 @@ def edit_skill_concept(skillConceptId,dataField):
 def get_completed(studentId):
     output = []
     student = students.find_one({'id': studentId})
-    for skill in student['skills']:
-        completed = {'skillName':skill['skillName'], 'skillConceptsCompleted':[]}
-        for skillConceptId in skill['skillConceptsCompleted']:
+    for aSkill in student['skills']:
+        completed = {'skillName':aSkill['name'], 'skillConceptsCompleted':[]}
+        for skillConceptId in aSkill['skillConceptsCompleted']:
             skillConcept = skillConcepts.find_one({'id': skillConceptId})
             skillConcept['_id'] = str(skillConcept['_id'])
             completed['skillConceptsCompleted'].append(skillConcept)
@@ -142,14 +142,18 @@ def get_completed(studentId):
 
     return jsonify({'skillConcepts': output})
 
-
-#TODO: check up duplicate of ID
 @app.route('/students/<int:studentId>/skillName/<string:skillName>/skillConceptId/<int:skillConceptId>/mark_completed', methods=['POST'])
 def mark_concept_completed(studentId, skillName, skillConceptId):
     aStudent = students.find_one({'id':studentId})
     for aSkill in aStudent['skills']:
-        if aSkill['skillName'].lower() == skillName.lower():
-            aSkill['skillConceptsCompleted'].append(skillConceptId)
+        if aSkill['name'].lower() == skillName.lower():
+            for aSkillConcept in aSkill['skillConcepts']:
+                if aSkillConcept['id'] == skillConceptId:
+                    aSkillConcept['completed'] = True;
+                    aSkill['completedPercentage'] += (100/len(aSkill['skillConcepts']))
+                    if aSkill['completedPercentage'] > 100:
+                        aSkill = 100
+                    break;
             students.update(
                 {
                     'id':studentId,
@@ -158,6 +162,7 @@ def mark_concept_completed(studentId, skillName, skillConceptId):
                     '$set':{'skills': aStudent['skills']}
                 }
             )
+            break;
     return jsonify({})
 
 def populate_db():
@@ -172,7 +177,7 @@ def populate_db():
     defaultSkillConcepts = [
         SkillConcept('Repetition', 1, 'to help kids with...', 'R1C2', ['www.link1.com', 'www.link2.com'], False),
         SkillConcept('Condition', 2, 'Student Has COMPLETED this MODULE...', 'R2C1', ['www.link1.com', 'www.link2.com'],
-                     True),
+                     False),
         SkillConcept('Procedural', 3, 'to help kids with...', 'R2C3', ['www.link1.com', 'www.link2.com'], False)]
     for SC in defaultSkillConcepts:
         add_skill_concept(SC);
