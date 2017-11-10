@@ -10,6 +10,8 @@ import { ISkillConcept } from '../Models/skillConcept.model';
 })
 export class SkillTreeComponent implements OnInit {
   @Input() skill: String;
+  // the selector variable will be used to select array elements
+  selector = 0
 
   skillConcepts: ISkillConcept[] = [
     {
@@ -42,19 +44,25 @@ export class SkillTreeComponent implements OnInit {
     });
   }
 
+  buttonClicked(num, elemt) {
+    debugger
+    this.selector = num
+    elemt.show()
+  }
+
   getName(num) {
     return this.skillConcepts[num].skillConceptName;
   }
 
   getDescription(num) {
-    return this.skillConcepts[num].skillDescription;
+    return this.skillConcepts[this.selector].skillDescription;
   }
 
   getExternalLinks(num) {
-    return this.skillConcepts[num].extLearnLinks;
+    return this.skillConcepts[this.selector].extLearnLinks;
   }
 
   getCompletion(num) {
-    return this.skillConcepts[num].completed;
+    return this.skillConcepts[this.selector].completed;
   }
 }

@@ -1,8 +1,12 @@
 <div class="container my-container" style="text-align:center; ">
 <!--https://mdbootstrap.com/angular/advanced/modals/ -->
-<button type="button" class="btn btn-primary waves-light myTestButton" data-toggle="modal" data-target="#basicExample" (click)="fluid.show()" mdbRippleRadius>
+<button type="button" class="btn btn-primary waves-light myTestButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(0,fluid)" mdbRippleRadius>
   {{getName(0)}}
   </button>
+  <button type="button" class="btn btn-primary waves-light myTestButton2" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(1,fluid)" mdbRippleRadius>
+    {{getName(1)}}
+  </button>
+
   <div mdbModal  #fluid="mdb-modal" class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="tfalse">
     <div class="modal-dialog modal-full-height modal-right" role="document">
         <div class="modal-content">
@@ -29,6 +33,6 @@
         </div>
     </div>
   </div>
-  <img src="../../assets/Tree.png">
+  <img class="skillTreeImage"  src="../../assets/Scratch-Layout-2.png">
 
 </div>
