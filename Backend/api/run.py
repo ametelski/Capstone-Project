@@ -74,7 +74,9 @@ def get_student_by_id(studentId):
     output = None
     for student in students.find({'id': studentId}):
         student['_id'] = str(student['_id'])
+        student['skills']= json.loads(get_student_skills(studentId).data)
         output = student
+        break
 
     return jsonify({'student' : output})
 
@@ -97,10 +99,21 @@ def get_student_skill_concepts(studentId, skillName):
 
 @app.route('/students/<int:studentId>/skills', methods=['GET'])
 def get_student_skills(studentId):
-    output = []
-    for aStudent in students.find({'id': studentId}):
-        aStudent['_id']=str(aStudent['_id'])
-        output = aStudent['skills']
+    aStudent = students.find_one({'id': studentId})
+    aStudent['_id']=str(aStudent['_id'])
+    for i in range(len(aStudent['skills'])):
+        aSkill = aStudent['skills'][i]
+        aSkill["skillConcepts"] = []
+        for aSkillConceptId in aSkill['skillConceptsIds']:
+            aSkill["skillConcepts"].append(skillConcepts.find_one({'id': aSkillConceptId}))
+            del aSkill["skillConcepts"][len(aSkill["skillConcepts"])-1]['_id']
+        completedPercentage = len(aSkill['skillConceptsCompleted'])*100 / len(aSkill['skillConceptsIds'])
+        aSkill['completedPercentage'] = completedPercentage
+        del aSkill['skillConceptsIds']
+        del aSkill['skillConceptsCompleted']
+        aStudent['skills'][i] = aSkill
+
+    output = aStudent['skills']
     return jsonify({'skills': output})
 
 @app.route('/admins', methods=['GET'])
