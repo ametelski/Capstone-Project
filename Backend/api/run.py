@@ -146,14 +146,10 @@ def get_completed(studentId):
 def mark_concept_completed(studentId, skillName, skillConceptId):
     aStudent = students.find_one({'id':studentId})
     for aSkill in aStudent['skills']:
-        if aSkill['name'].lower() == skillName.lower():
-            for aSkillConcept in aSkill['skillConcepts']:
-                if aSkillConcept['id'] == skillConceptId:
-                    aSkillConcept['completed'] = True;
-                    aSkill['completedPercentage'] += (100/len(aSkill['skillConcepts']))
-                    if aSkill['completedPercentage'] > 100:
-                        aSkill = 100
-                    break;
+        if aSkill['skillName'].lower() == skillName.lower():
+            aSkill['skillConceptsCompleted'] = set(aSkill['skillConceptsCompleted'])
+            aSkill['skillConceptsCompleted'].add(skillConceptId)
+            aSkill['skillConceptsCompleted'] = list(aSkill['skillConceptsCompleted'])
             students.update(
                 {
                     'id':studentId,
