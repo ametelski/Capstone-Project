@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SkillpathService } from '../skillpath.service';
-import { ISkillPath } from '../Models/skillPath.model';
+import { ISkill } from '../Models/skillPath.model';
 import { ISkillConcept } from '../Models/skillConcept.model';
 
 @Component({
@@ -13,22 +13,23 @@ export class SkillTreeComponent implements OnInit {
   // the selector variable will be used to select array elements
   selector = 0
 
-  skillConcepts: ISkillConcept[] = [
-    {
-      skillConceptName: 'Concept 1 name',
-      skillDescription: 'This area will contain concepts 1 the detailed description',
-      extLearnLinks: ['www.google.com', 'www.code.com'],
-      completed: false,
-      location: 2.2
-    },
-    {
-      skillConceptName: 'Concept 2 name',
-      skillDescription: 'This area will contain concept 2 detailed description',
-      extLearnLinks: ['www.link3.com', 'www.link4.com'],
-      completed: false,
-      location: 2.2
-    }
-  ];
+  skillConcepts: ISkillConcept[]
+  // = [
+  //   {
+  //     skillConceptName: 'Concept 1 name',
+  //     skillDescription: 'This area will contain concepts 1 the detailed description',
+  //     extLearnLinks: ['www.google.com', 'www.code.com'],
+  //     completed: false,
+  //     location: 2.2
+  //   },
+  //   {
+  //     skillConceptName: 'Concept 2 name',
+  //     skillDescription: 'This area will contain concept 2 detailed description',
+  //     extLearnLinks: ['www.link3.com', 'www.link4.com'],
+  //     completed: false,
+  //     location: 2.2
+  //   }
+  // ];
 
   constructor(private service: SkillpathService) {}
 
@@ -37,9 +38,9 @@ export class SkillTreeComponent implements OnInit {
   }
 
   getSkillTreeConcepts() {
-    this.service.getSkillPath().subscribe(data => {
+    this.service.getSkill().subscribe(data => {
       debugger;
-      // this.skillConcept = data[0].skillConcepts
+      this.skillConcepts = data[0].skillConcepts
       console.log(data[0]);
     });
   }
