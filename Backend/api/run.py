@@ -149,7 +149,9 @@ def mark_concept_completed(studentId, skillName, skillConceptId):
     aStudent = students.find_one({'id':studentId})
     for aSkill in aStudent['skills']:
         if aSkill['skillName'].lower() == skillName.lower():
-            aSkill['skillConceptsCompleted'].append(skillConceptId)
+            aSkill['skillConceptsCompleted'] = set(aSkill['skillConceptsCompleted'])
+            aSkill['skillConceptsCompleted'].add(skillConceptId)
+            aSkill['skillConceptsCompleted'] = list(aSkill['skillConceptsCompleted'])
             students.update(
                 {
                     'id':studentId,
