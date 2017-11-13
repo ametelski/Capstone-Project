@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SkillpathService } from '../skillpath.service';
+import { ISkill } from '../Models/skillPath.model';
 import { ISkillConcept } from '../Models/skillConcept.model';
 
 @Component({
@@ -7,15 +9,61 @@ import { ISkillConcept } from '../Models/skillConcept.model';
   styleUrls: ['./skill-tree.component.css']
 })
 export class SkillTreeComponent implements OnInit {
-  skillConcept: ISkillConcept = {
-    skillTitle: 'loops',
-    skillDescriptionL: 'This module will go over loops',
-    extLearnLinks: ['www.google.com'],
-    completed: false
-  }
-  constructor() { }
+  @Input() skill: String;
+  // the selector variable will be used to select array elements
+  selector = 0
+
+  skillConcepts: ISkillConcept[]
+  // = [
+  //   {
+  //     skillConceptName: 'Concept 1 name',
+  //     skillDescription: 'This area will contain concepts 1 the detailed description',
+  //     extLearnLinks: ['www.google.com', 'www.code.com'],
+  //     completed: false,
+  //     location: 2.2
+  //   },
+  //   {
+  //     skillConceptName: 'Concept 2 name',
+  //     skillDescription: 'This area will contain concept 2 detailed description',
+  //     extLearnLinks: ['www.link3.com', 'www.link4.com'],
+  //     completed: false,
+  //     location: 2.2
+  //   }
+  // ];
+
+  constructor(private service: SkillpathService) {}
 
   ngOnInit() {
+    this.getSkillTreeConcepts();
   }
 
+  getSkillTreeConcepts() {
+    this.service.getSkill().subscribe(data => {
+      debugger;
+      this.skillConcepts = data[0].skillConcepts
+      console.log(data[0]);
+    });
+  }
+
+  buttonClicked(num, elemt) {
+    debugger
+    this.selector = num
+    elemt.show()
+  }
+
+  getName(num) {
+    return this.skillConcepts[num].skillConceptName;
+  }
+
+  getDescription(num) {
+    return this.skillConcepts[this.selector].skillDescription;
+  }
+
+  getExternalLinks(num) {
+    return this.skillConcepts[this.selector].extLearnLinks;
+  }
+
+  getCompletion(num) {
+    return this.skillConcepts[this.selector].completed;
+  }
 }

@@ -6,6 +6,17 @@
   background: lightgreen;
   border: 1px solid black;
   padding: 10px;
-  margin: 10px; 
-  text-align: center; 
+  margin: 10px;
+  text-align: center;
+}
+
+.myTestButton{
+  position: absolute;
+  margin-left: 213px;
+  margin-top: -1px;
+  padding: 23px 12px;
+}
+
+.skillTreeImage{
+max-width:35%;
 }

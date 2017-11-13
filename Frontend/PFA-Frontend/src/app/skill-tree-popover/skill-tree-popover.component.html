@@ -1,3 +1,49 @@
-<div class="container">
-Is this thing even working
+<div mdbModal  #fluid="mdb-modal" class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+  <div class="modal-dialog modal-full-height modal-right" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fluid.hide()">
+                  <span aria-hidden="false">×</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente magnam, sunt, ea dolore
+                  eum quod. Minima fugiat enim aut soluta est reprehenderit reiciendis quos, qui, amet
+                  possimus laborum assumenda voluptate.
+              </p>
+
+              <ul class="list-group z-depth-0">
+                  <li class="list-group-item justify-content-between">
+                      Cras justo odio
+                      <span class="badge badge-primary badge-pill">14</span>
+                  </li>
+                  <li class="list-group-item justify-content-between">
+                      Dapibus ac facilisis in
+                      <span class="badge badge-primary badge-pill">2</span>
+                  </li>
+                  <li class="list-group-item justify-content-between">
+                      Morbi leo risus
+                      <span class="badge badge-primary badge-pill">1</span>
+                  </li>
+                  <li class="list-group-item justify-content-between">
+                      Cras justo odio
+                      <span class="badge badge-primary badge-pill">14</span>
+                  </li>
+                  <li class="list-group-item justify-content-between">
+                      Dapibus ac facilisis in
+                      <span class="badge badge-primary badge-pill">2</span>
+                  </li>
+                  <li class="list-group-item justify-content-between">
+                      Morbi leo risus
+                      <span class="badge badge-primary badge-pill">1</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="fluid.hide()" mdbRippleRadius>Close</button>
+              <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Save changes</button>
+          </div>
+      </div>
+  </div>
 </div>
