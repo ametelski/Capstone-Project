@@ -7,16 +7,51 @@ export const SKILL: ISkill[] = [
     skillConceptCompleted: 95,
     skillConcepts: [
       {
-        skillConceptName: 'Concept 1 name',
-        skillDescription: 'This area will contain concepts 1 the detailed description',
+        skillConceptName: 'Sequencing',
+        skillDescription: 'This area will contain sequencing the detailed description',
         extLearnLinks: ['www.google.com', 'www.code.com'],
         completed: false,
         location: 2.2
       },
       {
-        skillConceptName: 'Concept 2 name',
-        skillDescription: 'This area will contain concept 2 detailed description',
-        extLearnLinks: ['www.link3.com', 'www.link4.com'],
+        skillConceptName: 'Repitition',
+        skillDescription: 'This area will contain repitition detailed description',
+        extLearnLinks: ['www.google.com', 'www.code.com'],
+        completed: false,
+        location: 2.2
+      },
+      {
+        skillConceptName: 'Variables',
+        skillDescription: 'This area will contain variables detailed description',
+        extLearnLinks: ['www.google.com', 'www.code.com'],
+        completed: false,
+        location: 2.2
+      },
+      {
+        skillConceptName: 'Boolean Operation',
+        skillDescription: 'This area will contain boolean operation detailed description',
+        extLearnLinks: ['www.google.com', 'www.code.com'],
+        completed: false,
+        location: 2.2
+      },
+      {
+        skillConceptName: 'Data Structure',
+        skillDescription: 'This area will contain data structure detailed description',
+        extLearnLinks: ['www.google.com', 'www.code.com'],
+        completed: false,
+        location: 2.2
+      },
+      {
+        skillConceptName: 'Functions',
+        skillDescription: 'This area will contain functions detailed description',
+        extLearnLinks: ['www.google.com', 'www.code.com'],
+        completed: false,
+        location: 2.2
+      },
+      {
+        skillConceptName: 'Project Management',
+        skillDescription: 'This area will contain project management detailed description',
+        extLearnLinks: ['www.google.com', 'www.code.com'],
         completed: false,
         location: 2.2
       }
