@@ -1,0 +1,6 @@
+.customCard {
+	cursor: pointer;
+}
+.customCard:hover { 
+    background-color: #dce6f7;
+}

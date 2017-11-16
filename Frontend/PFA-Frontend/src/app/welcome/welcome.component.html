@@ -1,25 +1,20 @@
 
 <div class="container">
   <h1>This is the Welcome Page</h1>
-  <p>"id: "{{ id }}</p>
-  <p>"Content: "{{content}}</p>
 </div>
 
 <div *ngFor="let skill of skillPath" class="container">
-    <div class="card card-body button" [routerLink]="[skill.URL]" >
+    <div class="card card-body button customCard" [routerLink]="['/skillTree']" >
         <div>
           <h3 class="card-title">{{skill.skillName}}</h3>
         </div>
         <div class="card-body">
           <h3>Concepts Completed</h3>
           <div class="progress progress-stripped">
-              <div class="progress-bar progress-bar-success " [style.width]="skill.usersProgress + '%'"  ></div>
+              <div class="progress-bar progress-bar-success " [style.width]="skill.skillConceptCompleted + '%'"  ></div>
             </div>
-            <a>{{skill.usersProgress}}%</a>
+            <a>{{skill.skillConceptCompleted}}%</a>
         </div>
   </div>
 </div>
 
-<div class= "container">
-  <span>&#8601;</span>
-</div>

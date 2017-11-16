@@ -6,6 +6,73 @@
   background: lightgreen;
   border: 1px solid black;
   padding: 10px;
-  margin: 10px; 
-  text-align: center; 
+  margin: 10px;
+  text-align: center;
+}
+
+.myTestButton{
+  position: absolute;
+  margin-left: 213px;
+  margin-top: -1px;
+  padding: 23px 12px;
+}
+
+.skillTreeImage{
+max-width:35%;
+}
+
+.sequencingButton {
+  position: absolute;
+  top: 88px;
+  left: 849px;
+  height: 50px;
+}
+
+.repititionButton {
+  position: absolute;
+  top: 161px;
+  left: 1052px;
+  height: 50px;
+}
+
+.selectionButton {
+  position: absolute;
+  top: 258px;
+  left: 862px;
+  height: 50px;
+}
+
+.variablesButton {
+  position: absolute;
+  top: 258px;
+  left: 1052px;
+  height: 50px;
+}
+
+.booleanOperationButton {
+  position: absolute;
+  top: 356px;
+  left: 904px;
+  height: 50px;
+}
+
+.dataStructButton {
+  position: absolute;
+  top: 429px;
+  left: 726px;
+  height: 50px;
+}
+
+.functionsButton {
+  position: absolute;
+  top: 526px;
+  left: 713px;
+  height: 50px;
+}
+
+.projMangButton {
+  position: absolute;
+  top: 526px;
+  left: 904px;
+  height: 50px;
 }

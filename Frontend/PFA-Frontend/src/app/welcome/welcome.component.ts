@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TempRestService } from '../temp-rest.service';
-import { ISkillPath } from '../Models/skillPath.model';
+import { ISkill } from '../Models/skillPath.model';
 import { SkillpathService } from '../skillpath.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { SkillpathService } from '../skillpath.service';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  skillPath: ISkillPath[]
+  skillPath: ISkill[]
 
   // = [
   //   {
@@ -38,7 +38,7 @@ export class WelcomeComponent implements OnInit {
 
 
   ngOnInit() {
-     this.service.getSkillPath().subscribe(data => {
+     this.service.getSkill().subscribe(data => {
       debugger;
       this.skillPath = data;
       console.log(data);

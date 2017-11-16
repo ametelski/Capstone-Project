@@ -1,5 +1,7 @@
-export interface ISkillPath {
+import { ISkillConcept } from './skillConcept.model';
+export interface ISkill {
   skillName: string
-  usersProgress: number
-  URL?: string
+  skillConceptCompleted: number
+  skillURL?: string
+  skillConcepts: ISkillConcept[]
 }

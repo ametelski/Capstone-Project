@@ -1,122 +1,55 @@
-<div class="container my-container">
-  <div class="row ">
-    <div class="col my-col z-depth-5">
-    </div>
-    <div class="col my-col z-depth-5">
-    </div>
-    <div class="col my-col z-depth-5">
-      <button type="button" class="btn waves-light">
-<md-dialog-content class="container">
-<h1> What is going on here</h1>
-    <app-skill-tree-popove [popOver]='skillConcept'></app-skill-tree-popove>
-</md-dialog-content>
-      This button
+<div class="container my-container" style="text-align:center; ">
+<!--https://mdbootstrap.com/angular/advanced/modals/ -->
+<button type="button" class="btn btn-primary waves-light sequencingButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(0,fluid)" mdbRippleRadius>
+Sequencing
+</button>
+<button type="button" class="btn btn-primary waves-light repititionButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(1,fluid)" mdbRippleRadius>
+Repitition
+</button>
+<button type="button" class="btn btn-primary waves-light selectionButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(2,fluid)" mdbRippleRadius>
+Selection
+</button>
+<button type="button" class="btn btn-primary waves-light variablesButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(3,fluid)" mdbRippleRadius>
+Variables
+</button>
+<button type="button" class="btn btn-primary waves-light booleanOperationButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(4,fluid)" mdbRippleRadius>
+Boolean Operation
+</button>
+<button type="button" class="btn btn-primary waves-light dataStructButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(5,fluid)" mdbRippleRadius>
+Data Struct
+</button>
+<button type="button" class="btn btn-primary waves-light functionsButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(6,fluid)" mdbRippleRadius>
+Functions
+</button>
+<button type="button" class="btn btn-primary waves-light projMangButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(7,fluid)" mdbRippleRadius>
+Project Management</button>
 
+  <div mdbModal  #fluid="mdb-modal" class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="tfalse">
+    <div class="modal-dialog modal-full-height modal-right" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">{{getName(0)}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fluid.hide()">
+                    <span aria-hidden="false">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{getDescription(0)}}
+                </p>
 
-      </button>
-    </div>
-    <div class="col my-col z-depth-5">
-    </div>
-    <div class="col my-col z-depth-5">
+                <ul class="list-group z-depth-0">
+                    <li *ngFor="let link of getExternalLinks(0)" class="list-group-item justify-content-between">
+                        <a [href]= "link">codecademy</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="fluid.hide()" mdbRippleRadius>Close</button>
+                <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Completed tasks</button>
+            </div>
+        </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col my-col">
-    </div>
-    <div class="col my-col">
-        <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-        triggers="focus" mdbRippleRadius>
-        Some text
-      </button>
-    </div>
-    <div class="col my-col .mx-auto">
-      <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-        triggers="focus" mdbRippleRadius>
-        Some text
-      </button>
-    </div>
-    <div class="col my-col">
-        <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-        triggers="focus" mdbRippleRadius>
-        Some text
-      </button>
-    </div>
-    <div class="col my-col">
-    </div>
-  </div>
+  <img class="skillTreeImage"  src="../../assets/Scratch-Layout-2.png">
 
-  <div class="row">
-      <div class="col my-col">
-          <button type="button" class="btn btn btn-primary waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn btn btn-primary waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col .mx-auto">
-        <button type="button" class="btn btn btn-primary waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-    </div>
-
-  <div class="row">
-      <div class="col my-col">
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col .mx-auto">
-        <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-          <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-      </div>
-  </div>
-
-  <div class="row">
-      <div class="col my-col">
-      </div>
-      <div class="col my-col">
-      </div>
-      <div class="col my-col .mx-auto">
-        <button type="button" class="btn waves-light" mdbPopover="Saying something here" placement="right" popoverTitle="Dismissible popover"
-          triggers="focus" mdbRippleRadius>
-          Some text
-        </button>
-      </div>
-      <div class="col my-col">
-      </div>
-      <div class="col my-col">
-      </div>
-  </div>
 </div>

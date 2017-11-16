@@ -12,6 +12,7 @@ import { appRoutes } from '../routes';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TempRestService } from './temp-rest.service';
 import { SkillpathService } from './skillpath.service';
+import { LoginComponent } from './login/login.component';
 import { SkillTreeComponent } from './skill-tree/skill-tree.component';
 import { SkillTreePopoverComponent } from './skill-tree-popover/skill-tree-popover.component';
 import { SkillTreeConceptAdminApprovalComponent } from './skill-tree-concept-admin-approval/skill-tree-concept-admin-approval.component';
@@ -22,6 +23,7 @@ import { SkillTreeConceptAdminApprovalComponent } from './skill-tree-concept-adm
     NavbarComponent,
     SignUpComponent,
     WelcomeComponent,
+    LoginComponent,
     SkillTreeComponent,
     SkillTreePopoverComponent,
     SkillTreeConceptAdminApprovalComponent

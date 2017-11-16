@@ -1,6 +1,7 @@
 export interface ISkillConcept {
-skillTitle: String
-skillDescriptionL: String
+skillConceptName: String
+skillDescription: String
 extLearnLinks: String[]
 completed: boolean
+location: Number
 }
