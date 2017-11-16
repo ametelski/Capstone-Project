@@ -23,6 +23,7 @@ client = MongoClient('localhost', 27017)
 db = client.ProgrammingForAll
 admins = db.admins
 skillConcepts = db.skillConcepts
+skills = db.skills
 students = db.students
 testObjs = db.testObjs
 
@@ -53,6 +54,11 @@ def add_skill_concept(skillConcept):
 def add_admin(admin):
     admins.insert(admin.__dict__)
 
+def add_skill(skill):
+    jsonSC = json.dumps(skill, default=lambda o: o.__dict__)
+    objSC= json.loads(jsonSC)
+    skillConcepts.insert(objSC)   
+
 
 @app.route('/')
 def hello():
@@ -74,7 +80,6 @@ def get_student_by_id(studentId):
     output = None
     for student in students.find({'id': studentId}):
         student['_id'] = str(student['_id'])
-        student['skills']= json.loads(get_student_skills(studentId).data)
         output = student
         break
 
@@ -193,6 +198,7 @@ def populate_db():
         SkillConcept('Data Structures', 6, 'Data WHAT?! Impress your friends and family by making you\'re very own clone of Snake!', 'R3C2', ['https://codeclubprojects.org/en-GB/scratch/memory/','https://www.goshdarngames.com/scratch-snake-tutorial/', 'https://scratch.mit.edu/projects/17457737/'], False),
         SkillConcept('Functions', 7, 'Let\'s dive right in and write some funky functions!', 'R4C2', ['https://codeclubprojects.org/en-GB/scratch/clone-wars/', 'https://codeclubprojects.org/en-GB/scratch/space-junk/', 'https://codeclubprojects.org/en-GB/scratch/catch-the-dots/'], False),
         SkillConcept('Project Management (Boss Mode)', 8, 'Welcome to the boss fight. WoW! Look how far you\'ve come!! You can do it!', 'R4C1', ['https://codeclubprojects.org/en-GB/scratch/binary-hero/'], False)]
+    
     for newSkillConcept in scratchSkillConcepts:
         add_skill_concept(newSkillConcept);
 
