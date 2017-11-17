@@ -79,7 +79,7 @@ def get_student_by_id(studentId):
     return jsonify({'student' : output})
 
 @app.route('/students/<int:studentId>/skills', methods=['GET'])
-def get_student_skill_progress(studentId):
+def get_student_skills(studentId):
     output = []
     aStudent = students.find_one({'id': studentId})
     for skillName in aStudent['skills']:
@@ -119,6 +119,17 @@ def get_skill_concepts_completed_by_student(studentId):
         sc['_id'] = str(sc['_id'])
         output.append(sc)
     return jsonify({'skillConcepts': output})
+
+@app.route('/students/<int:studentId>/skillConcepts/completedIds', methods=['GET'])
+def get_skill_conceptsIds_completed_by_student(studentId):
+    output = []
+    student = students.find_one({'id': studentId})
+    skillConceptsCompleted = student['skillConceptsCompleted']
+    for skillConceptId in skillConceptsCompleted:
+        sc = skillConcepts.find_one({'id': skillConceptId})
+        sc['_id'] = str(sc['_id'])
+        output.append(sc['id'])
+    return jsonify({'skillConceptsIds': output})
 
 @app.route('/students/<int:studentId>/skillName/<string:skillName>/skillConceptId/<int:skillConceptId>/mark_completed', methods=['POST'])
 def mark_concept_completed(studentId, skillName, skillConceptId):
