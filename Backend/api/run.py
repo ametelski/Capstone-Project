@@ -1,8 +1,6 @@
 # run.py
 
 # Programming For All
-# TODO: Divide the routes in to separate files using Blueprints to simplify and modularize the project.
-# http://flask.pocoo.org/docs/0.12/blueprints/
 # Author: Gabriel Fabian, 2017
 # Author: Miguel Deniz
 # Last update: 10/2/17
@@ -40,7 +38,6 @@ def clean_db():
     admins.drop()
     students.drop()
     skillConcepts.drop()
-    
 
 def add_student(student):
     jsonStudent = json.dumps(student, default=lambda o: o.__dict__)
@@ -61,12 +58,10 @@ def add_skill(skill):
     objSC= json.loads(jsonSC)
     skills.insert(objSC)
 
-
 @app.route('/')
 def hello():
-    greeting = [{'greeting': 'Hello World!'}]
+    greeting = [{'greeting': 'PFA backend is up and running.'}]
     return jsonify({'messages': greeting})
-
 
 @app.route('/students', methods=['GET'])
 def get_all_students():
@@ -86,23 +81,6 @@ def get_student_by_id(studentId):
         break
 
     return jsonify({'student' : output})
-
-'''
-    skill = Python || HTML || CSS
-'''
-@app.route('/students/<int:studentId>/<skillName>', methods=['GET'])
-def get_student_skill_concepts(studentId, skillName):
-
-    output = None
-    aStudent = students.find_one({'id': int(studentId)})
-    for aSkill in aStudent['skills']:
-        if aSkill == skillName.lower():
-            for skillConceptId in aSkill['skillConceptsIds']:
-                concept = skillConcepts.find_one({'id':skillConceptId})
-                concept['_id'] = str(concept['_id'])
-                output.append(concept)
-
-    return jsonify({'skillConcepts': output})
 
 @app.route('/students/<int:studentId>/skills', methods=['GET'])
 def get_student_skills(studentId):
@@ -145,11 +123,8 @@ def edit_skill_concept_description(skillConceptId,dataField):
     resultConcept['_id'] = str(resultConcept['_id'])
     return jsonify(resultConcept)
 
-'''
-    http://127.0.0.1:5000/completed?studentID=12345&skillConcept=concept
-'''
 @app.route('/students/<int:studentId>/skillConcepts/completed', methods=['GET'])
-def get_completed(studentId):
+def get_skill_concepts_completed_by_student(studentId):
     output = []
     student = students.find_one({'id': studentId})
     skillConceptsCompleted = student['skillConceptsCompleted']
