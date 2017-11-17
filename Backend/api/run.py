@@ -152,14 +152,11 @@ def edit_skill_concept_description(skillConceptId,dataField):
 def get_completed(studentId):
     output = []
     student = students.find_one({'id': studentId})
-    for aSkill in student['skills']:
-        completed = {'skillName':aSkill['name'], 'skillConceptsCompleted':[]}
-        for skillConceptId in aSkill['skillConceptsCompleted']:
-            skillConcept = skillConcepts.find_one({'id': skillConceptId})
-            skillConcept['_id'] = str(skillConcept['_id'])
-            completed['skillConceptsCompleted'].append(skillConcept)
-        output.append(completed)
-
+    skillConceptsCompleted = student['skillConceptsCompleted']
+    for skillConceptId in skillConceptsCompleted:
+        sc = skillConcepts.find_one({'id': skillConceptId})
+        sc['_id'] = str(sc['_id'])
+        output.append(sc)
     return jsonify({'skillConcepts': output})
 
 @app.route('/students/<int:studentId>/skillName/<string:skillName>/skillConceptId/<int:skillConceptId>/mark_completed', methods=['POST'])
@@ -202,8 +199,8 @@ def get_skillConcepts_for_skill(skillName):
 
 def populate_db():
     dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin', 'admin1@pfa.com')
-    dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com')
-    dummyStudent2 = Student('Bob', 'Well', 2, 10, 'student2@pfa.com')
+    dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com', [1,3,4])
+    dummyStudent2 = Student('Bob', 'Well', 2, 10, 'student2@pfa.com', [2, 8])
     scratchSkill = Skill("Scratch", "/scratch", [1,2,3,4,5,6,7,8])
     add_skill(scratchSkill)
     add_student(dummyStudent)
