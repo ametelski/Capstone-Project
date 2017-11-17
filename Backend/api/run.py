@@ -169,6 +169,18 @@ def get_skillConcepts_for_skill(skillName):
         output.append(skillConcept)
     return jsonify({'skillConcepts' : output})
 
+@app.route('/skills/<string:skillName>/skillConceptsIds', methods=['GET'])
+def get_skillConceptsIds_for_skill(skillName):
+    output = []
+    skill = skills.find_one({'skillName': skillName})
+    skillConceptIds = skill['skillConceptsIds']
+    for entry in skillConceptIds:
+        skillConcept = skillConcepts.find_one({'id':entry})
+        skillConcept['_id'] = str(skillConcept['_id'])
+        output.append(skillConcept['id'])
+    return jsonify({'skillConceptsIds' : output})
+
+
 def populate_db():
     dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin', 'admin1@pfa.com')
     dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com', [1,3,4])
