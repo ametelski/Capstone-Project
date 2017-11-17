@@ -21,9 +21,9 @@ from flask_cors import CORS
 # if your instance of mongo is hosted elsewhere, change the params here to match
 client = MongoClient('localhost', 27017)
 db = client.ProgrammingForAll
+skills = db.skills
 admins = db.admins
 skillConcepts = db.skillConcepts
-skills = db.skills
 students = db.students
 testObjs = db.testObjs
 
@@ -36,9 +36,11 @@ heading = 'PFA'
 
 
 def clean_db():
+    skills.drop()
     admins.drop()
     students.drop()
     skillConcepts.drop()
+    
 
 def add_student(student):
     jsonStudent = json.dumps(student, default=lambda o: o.__dict__)
@@ -57,7 +59,7 @@ def add_admin(admin):
 def add_skill(skill):
     jsonSC = json.dumps(skill, default=lambda o: o.__dict__)
     objSC= json.loads(jsonSC)
-    skillConcepts.insert(objSC)   
+    skills.insert(objSC)
 
 
 @app.route('/')
@@ -94,7 +96,7 @@ def get_student_skill_concepts(studentId, skillName):
     output = None
     aStudent = students.find_one({'id': int(studentId)})
     for aSkill in aStudent['skills']:
-        if aSkill['name'].lower() == skillName.lower():
+        if aSkill == skillName.lower():
             for skillConceptId in aSkill['skillConceptsIds']:
                 concept = skillConcepts.find_one({'id':skillConceptId})
                 concept['_id'] = str(concept['_id'])
@@ -179,10 +181,31 @@ def mark_concept_completed(studentId, skillName, skillConceptId):
             break;
     return jsonify({})
 
+@app.route('/skills', methods=['GET'])
+def get_all_skills():
+    output = []
+    for skill in skills.find():
+        skill['_id'] = str(skill['_id'])
+        output.append(skill)
+    return jsonify({'skills' : output})
+
+@app.route('/skills/<string:skillName>/skillConcepts', methods=['GET'])
+def get_skillConcepts_for_skill(skillName):
+    output = []
+    skill = skills.find_one({'skillName': skillName})
+    skillConceptIds = skill['skillConceptsIds']
+    for entry in skillConceptIds:
+        skillConcept = skillConcepts.find_one({'id':entry})
+        skillConcept['_id'] = str(skillConcept['_id'])
+        output.append(skillConcept)
+    return jsonify({'skillConcepts' : output})
+
 def populate_db():
     dummyAdmin = Admin('Cindy', 'Smith', 2, 'Admin', 'admin1@pfa.com')
     dummyStudent = Student('Timmy', 'Junior', 1, 12, 'student1@pfa.com')
     dummyStudent2 = Student('Bob', 'Well', 2, 10, 'student2@pfa.com')
+    scratchSkill = Skill("Scratch", "/scratch", [1,2,3,4,5,6,7,8])
+    add_skill(scratchSkill)
     add_student(dummyStudent)
     add_student(dummyStudent2)
     add_admin(dummyAdmin)
@@ -199,6 +222,8 @@ def populate_db():
         SkillConcept('Functions', 7, 'Let\'s dive right in and write some funky functions!', 'R4C2', ['https://codeclubprojects.org/en-GB/scratch/clone-wars/', 'https://codeclubprojects.org/en-GB/scratch/space-junk/', 'https://codeclubprojects.org/en-GB/scratch/catch-the-dots/'], False),
         SkillConcept('Project Management (Boss Mode)', 8, 'Welcome to the boss fight. WoW! Look how far you\'ve come!! You can do it!', 'R4C1', ['https://codeclubprojects.org/en-GB/scratch/binary-hero/'], False)]
     
+
+
     for newSkillConcept in scratchSkillConcepts:
         add_skill_concept(newSkillConcept);
 
