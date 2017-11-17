@@ -31,8 +31,6 @@ CORS(app)
 title = 'Programming for All'
 heading = 'PFA'
 
-
-
 def clean_db():
     skills.drop()
     admins.drop()
@@ -48,7 +46,6 @@ def add_skill_concept(skillConcept):
     jsonSC = json.dumps(skillConcept, default=lambda o: o.__dict__)
     objSC= json.loads(jsonSC)
     skillConcepts.insert(objSC)
-
 
 def add_admin(admin):
     admins.insert(admin.__dict__)
@@ -79,26 +76,15 @@ def get_student_by_id(studentId):
         student['_id'] = str(student['_id'])
         output = student
         break
-
     return jsonify({'student' : output})
 
 @app.route('/students/<int:studentId>/skills', methods=['GET'])
-def get_student_skills(studentId):
+def get_student_skill_progress(studentId):
+    output = []
     aStudent = students.find_one({'id': studentId})
-    aStudent['_id']=str(aStudent['_id'])
-    for i in range(len(aStudent['skills'])):
-        aSkill = aStudent['skills'][i]
-        aSkill["skillConcepts"] = []
-        for aSkillConceptId in aSkill['skillConceptsIds']:
-            aSkill["skillConcepts"].append(skillConcepts.find_one({'id': aSkillConceptId}))
-            del aSkill["skillConcepts"][len(aSkill["skillConcepts"])-1]['_id']
-        completedPercentage = len(aSkill['skillConceptsCompleted'])*100 / len(aSkill['skillConceptsIds'])
-        aSkill['completedPercentage'] = completedPercentage
-        del aSkill['skillConceptsIds']
-        del aSkill['skillConceptsCompleted']
-        aStudent['skills'][i] = aSkill
-
-    output = aStudent['skills']
+    for skillName in aStudent['skills']:
+        skill = skills.find_one({'skillName':skillName})
+        output.append({'skillName':skillName})
     return jsonify({'skills': output})
 
 @app.route('/admins', methods=['GET'])

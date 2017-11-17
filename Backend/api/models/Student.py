@@ -13,7 +13,7 @@ class Student(Person):
 					Skill("Scratch", "\\scratchTree")
 					]
 
-	def __init__(self, first, last, id, age, email, skillConceptsCompleted=[], skills=["HTML, Python, CSS, Scratch"]):
+	def __init__(self, first, last, id, age, email, skillConceptsCompleted=[], skills=["HTML", "Python", "CSS", "Scratch"]):
 		Person.__init__(self, first, last, id, email)
 		self.age = age
 		self.skillConceptsCompleted = skillConceptsCompleted
