@@ -131,24 +131,16 @@ def get_skill_conceptsIds_completed_by_student(studentId):
         output.append(sc['id'])
     return jsonify({'skillConceptsIds': output})
 
-@app.route('/students/<int:studentId>/skillName/<string:skillName>/skillConceptId/<int:skillConceptId>/mark_completed', methods=['POST'])
-def mark_concept_completed(studentId, skillName, skillConceptId):
+@app.route('/students/<int:studentId>/skillConcepts', methods=['POST'])
+def mark_concept_completed(studentId):
     aStudent = students.find_one({'id':studentId})
-    for aSkill in aStudent['skills']:
-        if aSkill['skillName'].lower() == skillName.lower():
-            aSkill['skillConceptsCompleted'] = set(aSkill['skillConceptsCompleted'])
-            aSkill['skillConceptsCompleted'].add(skillConceptId)
-            aSkill['skillConceptsCompleted'] = list(aSkill['skillConceptsCompleted'])
-            students.update(
-                {
-                    'id':studentId,
-                },
-                {
-                    '$set':{'skills': aStudent['skills']}
-                }
-            )
-            break;
-    return jsonify({})
+    data = request.data
+    dataDict = json.loads(data)
+    skillConceptCompleted = dataDict['completedSkillConcept']
+    students.update(
+        { 'id': studentId },
+        { '$push': {'skillConceptsCompleted': skillConceptCompleted } })
+    return jsonify({"appended":skillConceptCompleted})
 
 @app.route('/skills', methods=['GET'])
 def get_all_skills():
