@@ -10,8 +10,7 @@ class Skill():
 
 	defaultSkillConceptIds = [1,2,3]
 
-	def __init__(self, skillName, skillUrl, skillConceptsIds=defaultSkillConceptIds, skillConceptsCompleted=[1,2]):
+	def __init__(self, skillName, skillUrl, skillConceptsIds=defaultSkillConceptIds):
 		self.skillName = skillName
 		self.skillUrl = skillUrl
 		self.skillConceptsIds = skillConceptsIds
-		self.skillConceptsCompleted = skillConceptsCompleted
