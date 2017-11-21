@@ -185,15 +185,15 @@ def populate_db():
 
     #default skillConcept entries for database
     scratchSkillConcepts = [
-        SkillConcept('Sequencing', 1, 'IF and WHEN you\'re ready to dive in, here\'s the place to start! Learn all about sequencing and how to take control of your program\'s flow!', 'R1C1', ['https://codeclubprojects.org/en-GB/scratch/rock-band/', 'https://scratchtutorials.com/tutorials/animate-your-name-using-colors'], False),
-        SkillConcept('Repitition', 2, 'Well done, well done, well done. Let\'s learn about repitition!', 'R1C2', ['https://codeclubprojects.org/en-GB/scratch/lost-in-space/', 'https://scratch.mit.edu/projects/89696985/'],
-                     False),
-        SkillConcept('Variables', 3, 'What\'s a variable, you say? Let\'s get to the bottom of this by busting some ghosts!' , 'R2C2', ['https://codeclubprojects.org/en-GB/scratch/ghostbusters/', 'https://scratch.mit.edu/projects/98831292/'], False),
-        SkillConcept('Selection', 4, 'Build you\'re own chatbot to learn about selection!', 'R2C1', ['https://codeclubprojects.org/en-GB/scratch/chatbot/'], False),
-        SkillConcept('Boolean Operators', 5, 'If(you == havingFun) then let\'s continue on and learn about boolean operators!', 'R3C1', ['https://codeclubprojects.org/en-GB/scratch/paint-box/', 'https://wiki.scratch.mit.edu/wiki/Boolean_Block'], False),
-        SkillConcept('Data Structures', 6, 'Data WHAT?! Impress your friends and family by making you\'re very own clone of Snake!', 'R3C2', ['https://codeclubprojects.org/en-GB/scratch/memory/','https://www.goshdarngames.com/scratch-snake-tutorial/', 'https://scratch.mit.edu/projects/17457737/'], False),
-        SkillConcept('Functions', 7, 'Let\'s dive right in and write some funky functions!', 'R4C2', ['https://codeclubprojects.org/en-GB/scratch/clone-wars/', 'https://codeclubprojects.org/en-GB/scratch/space-junk/', 'https://codeclubprojects.org/en-GB/scratch/catch-the-dots/'], False),
-        SkillConcept('Project Management (Boss Mode)', 8, 'Welcome to the boss fight. WoW! Look how far you\'ve come!! You can do it!', 'R4C1', ['https://codeclubprojects.org/en-GB/scratch/binary-hero/'], False)]
+
+        SkillConcept('Sequencing', 1, 'IF and WHEN you\'re ready to dive in, here\'s the place to start! Learn all about sequencing and how to take control of your program\'s flow!', 'R1C1', ['https://codeclubprojects.org/en-GB/scratch/rock-band/', 'https://scratchtutorials.com/tutorials/animate-your-name-using-colors']),
+        SkillConcept('Repitition', 2, 'Well done, well done, well done. Let\'s learn about repitition!', 'R1C2', ['https://codeclubprojects.org/en-GB/scratch/lost-in-space/', 'https://scratch.mit.edu/projects/89696985/']),
+        SkillConcept('Variables', 3, 'What\'s a variable, you say? Let\'s get to the bottom of this by busting some ghosts!' , 'R2C2', ['https://codeclubprojects.org/en-GB/scratch/ghostbusters/', 'https://scratch.mit.edu/projects/98831292/']),
+        SkillConcept('Selection', 4, 'Build you\'re own chatbot to learn about selection!', 'R2C1', ['https://codeclubprojects.org/en-GB/scratch/chatbot/']),
+        SkillConcept('Boolean Operators', 5, 'If(you == havingFun) then let\'s continue on and learn about boolean operators!', 'R3C1', ['https://codeclubprojects.org/en-GB/scratch/paint-box/', 'https://wiki.scratch.mit.edu/wiki/Boolean_Block']),
+        SkillConcept('Data Structures', 6, 'Data WHAT?! Impress your friends and family by making you\'re very own clone of Snake!', 'R3C2', ['https://codeclubprojects.org/en-GB/scratch/memory/','https://www.goshdarngames.com/scratch-snake-tutorial/', 'https://scratch.mit.edu/projects/17457737/']),
+        SkillConcept('Functions', 7, 'Let\'s dive right in and write some funky functions!', 'R4C2', ['https://codeclubprojects.org/en-GB/scratch/clone-wars/', 'https://codeclubprojects.org/en-GB/scratch/space-junk/', 'https://codeclubprojects.org/en-GB/scratch/catch-the-dots/']),
+        SkillConcept('Project Management (Boss Mode)', 8, 'Welcome to the boss fight. WoW! Look how far you\'ve come!! You can do it!', 'R4C1', ['https://codeclubprojects.org/en-GB/scratch/binary-hero/'])]
     
 
 
