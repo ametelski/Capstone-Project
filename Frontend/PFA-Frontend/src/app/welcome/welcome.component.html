@@ -3,7 +3,7 @@
   <h1>This is the Welcome Page</h1>
 </div>
 
-<div *ngFor="let skill of skillPath" class="container">
+<div *ngFor="let skill of skillList.skills" class="container">
     <div class="card card-body button customCard" [routerLink]="['/skillTree']" >
         <div>
           <h3 class="card-title">{{skill.skillName}}</h3>
@@ -11,9 +11,9 @@
         <div class="card-body">
           <h3>Concepts Completed</h3>
           <div class="progress progress-stripped">
-              <div class="progress-bar progress-bar-success " [style.width]="skill.skillConceptCompleted + '%'"  ></div>
+              <div class="progress-bar progress-bar-success " [style.width]="10 + '%'"  ></div>
             </div>
-            <a>{{skill.skillConceptCompleted}}%</a>
+            <a></a>
         </div>
   </div>
 </div>

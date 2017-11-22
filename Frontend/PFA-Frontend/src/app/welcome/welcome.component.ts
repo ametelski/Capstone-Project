@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TempRestService } from '../temp-rest.service';
-import { ISkill } from '../Models/skillPath.model';
+import { ISkillRootObject, ISkills } from '../Models/skillPath.model';
 import { SkillpathService } from '../skillpath.service';
 
 @Component({
@@ -8,42 +8,19 @@ import { SkillpathService } from '../skillpath.service';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  skillPath: ISkill[]
 
-  // = [
-  //   {
-  //     skillName: 'Python',
-  //     URL: '/skillTree',
-  //     usersProgress: 20
-  //   },
-  //   {
-  //     skillName: 'HTML',
-  //     URL: '/HTMLSkillTree',
-  //     usersProgress: 45
-  //   },
-  //   {
-  //   skillName: 'Scratch',
-  //   URL: '/ScatchConcepts',
-  //   usersProgress: 95
-  //   }
-
-  // ]
+  skillList: ISkillRootObject
 
 
-  id
-  content: string[]
-  data: JSON
 
   constructor(private service: SkillpathService) { }
 
 
   ngOnInit() {
-     this.service.getSkill().subscribe(data => {
+      this.service.getSkillsByStudentId(1).subscribe(data => {
       debugger;
-      this.skillPath = data;
+      this.skillList = data;
       console.log(data);
-      this.id = data['id'];
-      this.content = data['content']
      });
   }
 
