@@ -29,7 +29,7 @@ export class SkillTreeComponent implements OnInit {
     this.service.getSkillConceptsByName('Scratch').subscribe(data => {
       debugger;
       this.skillConcepts = data.skillConcepts;
-      console.log(data);
+      console.log(data.skillConcepts.length);
      });
   }
 

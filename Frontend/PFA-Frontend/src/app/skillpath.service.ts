@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/RX'
 
 import { of } from 'rxjs/observable/of';
 import { ISkillConcept, ISkillConceptRootObject } from 'app/Models/skillConcept.model';
+import { ISkillConceptsIds } from './Models/skillConcept.model';
 
 @Injectable()
 export class SkillpathService {
@@ -25,7 +26,6 @@ export class SkillpathService {
   getSkillConceptsByName(skillName): Observable <ISkillConceptRootObject> {
     return this.http.get('http://127.0.0.1:5000/skills/' + skillName + '/skillConcepts')
                     .map((response: Response) => {
-debugger
                       return <ISkillConceptRootObject>response.json()
                     }).catch(this.handleError);
   }
@@ -36,10 +36,10 @@ Get array of skillConcept IDs that belong to a skill(tree) by name [/skills/<ski
 Example endpoint: http://127.0.0.1:5000/skills/Scratch/skillConceptsIds
 
 */
-getSkillConceptsIdByName(skillName): Observable <Number[]> {
+getSkillConceptsIdBySkillName(skillName): Observable <ISkillConceptsIds> {
   return this.http.get('http://127.0.0.1:5000/skills/' + skillName + '/skillConceptsIds')
                   .map((response: Response) => {
-                    return <Number[]>response.json()
+                    return <ISkillConceptsIds>response.json()
                   }).catch(this.handleError);
 }
 
@@ -92,10 +92,10 @@ Example endpoint: http://127.0.0.1:5000/students/1/skillConcepts/completedIds
 
 */
 
-getArrayOfSkillConceptsIdStudentHasCompleted(studentID): Observable <any[]> {
+getArrayOfSkillConceptsIdStudentHasCompleted(studentID): Observable <ISkillConceptsIds> {
   return this.http.get('http://127.0.0.1:5000/students/' + studentID + '/skillConcepts/completedIds')
                   .map((response: Response) => {
-                    return <any[]>response.json()
+                    return <ISkillConceptsIds>response.json()
                   }).catch(this.handleError);
 }
 

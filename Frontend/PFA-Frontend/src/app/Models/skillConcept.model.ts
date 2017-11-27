@@ -16,3 +16,7 @@ skillConceptName: String
 export interface ISkillConceptRootObject {
   skillConcepts: ISkillConcept[];
 }
+
+export interface ISkillConceptsIds {
+  skillConceptsIds: number[];
+}
