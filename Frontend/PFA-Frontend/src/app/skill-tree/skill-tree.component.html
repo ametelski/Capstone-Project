@@ -44,10 +44,20 @@ Project Management</button>
                     </li>
                 </ul>
             </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="fluid.hide()" mdbRippleRadius>Close</button>
-                <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Completed tasks</button>
-            </div>
+            <ul>
+
+              <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="fluid.hide()" mdbRippleRadius>Close</button>
+                  <button type="button" class="btn btn-primary waves-light" (click)="showPassword = true" mdbRippleRadius>Completed tasks</button>
+              </div>
+
+          </ul>
+          <ul>
+            <div class="md-form" [hidden]="!showPassword">
+              <input type="password" id="orangeForm-pass" class="form-control" mdbActive>
+              <label for="orangeForm-pass">Admin Password</label>
+          </div>
+          </ul>
         </div>
     </div>
   </div>

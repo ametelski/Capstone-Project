@@ -19,6 +19,7 @@ export class SkillTreeComponent implements OnInit {
   title: String
   description: String
   extLearnLinks: String[]
+showPasswood: true;
 
   constructor(private service: SkillpathService) {}
 
