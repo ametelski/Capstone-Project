@@ -10,6 +10,10 @@
   text-align: center;
 }
 
+.finishedColor {
+background-color:rgb(119, 140, 179);
+}
+
 .myTestButton{
   position: absolute;
   margin-left: 213px;

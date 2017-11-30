@@ -29,17 +29,17 @@ export class WelcomeComponent implements OnInit {
 
 
 caluclateCompletedSkillConcepts(skill: ISkills) {
-let totalNumberOfSkillConcepts = 0
-let studentsCompleted = 0;
-  this.service.getSkillConceptsIdBySkillName(skill.skillName).subscribe(data => {
-    totalNumberOfSkillConcepts = data.skillConceptsIds.length
-})
-this.service.getArrayOfSkillConceptsIdStudentHasCompleted(skill.skillName).subscribe(data => {
-studentsCompleted = data.skillConceptsIds.length
-})
-debugger
-skill.completed =  studentsCompleted / totalNumberOfSkillConcepts * 1.0
-return studentsCompleted / totalNumberOfSkillConcepts * 1.0
+//     let totalNumberOfSkillConcepts = 0
+//     let studentsCompleted = 0;
+//     this.service.getSkillConceptsIdBySkillName(skill.skillName).subscribe(data => {
+//         totalNumberOfSkillConcepts = data.skillConceptsIds.length
+//     })
+//     this.service.getArrayOfSkillConceptsIdStudentHasCompleted(skill.skillName).subscribe(data => {
+//       studentsCompleted = data.skillConceptsIds.length
+//     })
+// debugger
+// skill.completed =  studentsCompleted / totalNumberOfSkillConcepts * 1.0
+// return studentsCompleted / totalNumberOfSkillConcepts * 1.0
 }
 
 

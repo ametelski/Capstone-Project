@@ -11,6 +11,7 @@ extLearnLinks: String[]
 id: Number
 location: String
 skillConceptName: String
+isCompleted?: Boolean
 }
 
 export interface ISkillConceptRootObject {
