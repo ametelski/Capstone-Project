@@ -1,52 +1,64 @@
 <div class="container my-container" style="text-align:center; ">
-<!--https://mdbootstrap.com/angular/advanced/modals/ -->
-<button type="button" class="btn btn-primary waves-light sequencingButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(0,fluid)" mdbRippleRadius>
+
+  <!-- https://mdbootstrap.com/angular/advanced/modals/ -->
+<button type="button" class="btn btn-primary waves-light sequencingButton" [class.finishedColor]="isCompleted[0]" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(0,fluid)" mdbRippleRadius>
 Sequencing
 </button>
-<button type="button" class="btn btn-primary waves-light repititionButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(1,fluid)" mdbRippleRadius>
+<button type="button" class="btn btn-primary waves-light repititionButton" [class.finishedColor]="isCompleted[1]" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(1,fluid)" mdbRippleRadius>
 Repitition
 </button>
-<button type="button" class="btn btn-primary waves-light selectionButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(2,fluid)" mdbRippleRadius>
+<button type="button" class="btn btn-primary waves-light selectionButton" [class.finishedColor]="isCompleted[2]" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(3,fluid)" mdbRippleRadius>
 Selection
 </button>
-<button type="button" class="btn btn-primary waves-light variablesButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(3,fluid)" mdbRippleRadius>
+<button type="button" class="btn btn-primary waves-light variablesButton" [class.finishedColor]="isCompleted[3]" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(2,fluid)" mdbRippleRadius>
 Variables
 </button>
-<button type="button" class="btn btn-primary waves-light booleanOperationButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(4,fluid)" mdbRippleRadius>
+<button type="button" class="btn btn-primary waves-light booleanOperationButton" [class.finishedColor]="isCompleted[4]" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(4,fluid)" mdbRippleRadius>
 Boolean Operation
 </button>
-<button type="button" class="btn btn-primary waves-light dataStructButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(5,fluid)" mdbRippleRadius>
+<button type="button" class="btn btn-primary waves-light dataStructButton" [class.finishedColor]="isCompleted[5]" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(5,fluid)" mdbRippleRadius>
 Data Struct
 </button>
-<button type="button" class="btn btn-primary waves-light functionsButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(6,fluid)" mdbRippleRadius>
+<button type="button" class="btn btn-primary waves-light functionsButton" [class.finishedColor]="isCompleted[6]" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(6,fluid)" mdbRippleRadius>
 Functions
 </button>
-<button type="button" class="btn btn-primary waves-light projMangButton" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(7,fluid)" mdbRippleRadius>
+<button type="button" class="btn btn-primary waves-light projMangButton" [class.finishedColor]="isCompleted[7]" data-toggle="modal" data-target="#basicExample" (click)="buttonClicked(7,fluid)" mdbRippleRadius>
 Project Management</button>
 
   <div mdbModal  #fluid="mdb-modal" class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="tfalse">
     <div class="modal-dialog modal-full-height modal-right" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title w-100" id="myModalLabel">{{getName(0)}}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fluid.hide()">
+                <h4 class="modal-title w-100" id="myModalLabel">{{title}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal(fluid)">
                     <span aria-hidden="false">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{getDescription(0)}}
+                <p>{{description}}
                 </p>
 
                 <ul class="list-group z-depth-0">
-                    <li *ngFor="let link of getExternalLinks(0)" class="list-group-item justify-content-between">
-                        <a [href]= "link">codecademy</a>
+                    <li *ngFor="let link of extLearnLinks" class="list-group-item justify-content-between">
+                        <a [href]= "link" target="_blank">codecademy</a>
                     </li>
                 </ul>
             </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="fluid.hide()" mdbRippleRadius>Close</button>
-                <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Completed tasks</button>
-            </div>
+            <ul>
+
+              <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="closeModal(fluid)" mdbRippleRadius>Close</button>
+                  <button type="button" class="btn btn-primary waves-light" (click)="showPassword = true" mdbRippleRadius>Completed tasks</button>
+              </div>
+
+          </ul>
+          <ul>
+            <div class="md-form" [hidden]="!showPassword">
+              <input type="password" #password class="form-control" mdbActive>
+              <label for="orangeForm-pass">Admin Password</label>
+              <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="checkPassword(password, fluid)" mdbRippleRadius>Submit</button>
+          </div>
+          </ul>
         </div>
     </div>
   </div>

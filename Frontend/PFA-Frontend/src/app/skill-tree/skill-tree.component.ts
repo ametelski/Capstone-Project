@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SkillpathService } from '../skillpath.service';
-import { ISkill } from '../Models/skillPath.model';
-import { ISkillConcept } from '../Models/skillConcept.model';
+import { ISkills, ISkillRootObject } from '../Models/skillPath.model';
+import { ISkillConcept, ISkillConceptsIds } from '../Models/skillConcept.model';
+
 
 @Component({
   selector: 'app-skill-tree',
@@ -14,56 +15,87 @@ export class SkillTreeComponent implements OnInit {
   selector = 0
 
   skillConcepts: ISkillConcept[]
-  // = [
-  //   {
-  //     skillConceptName: 'Concept 1 name',
-  //     skillDescription: 'This area will contain concepts 1 the detailed description',
-  //     extLearnLinks: ['www.google.com', 'www.code.com'],
-  //     completed: false,
-  //     location: 2.2
-  //   },
-  //   {
-  //     skillConceptName: 'Concept 2 name',
-  //     skillDescription: 'This area will contain concept 2 detailed description',
-  //     extLearnLinks: ['www.link3.com', 'www.link4.com'],
-  //     completed: false,
-  //     location: 2.2
-  //   }
-  // ];
+  skConIDS: ISkillConceptsIds
+  name: String = 'Scratch'
+  title: String
+  description: String
+  extLearnLinks: String[]
+  showPassword: Boolean =  false;
+  isCompleted: Boolean[] = [false, false, false, false, false, false, false, false]
 
   constructor(private service: SkillpathService) {}
 
   ngOnInit() {
     this.getSkillTreeConcepts();
+    //this.getStudentsCompletedSkill()
   }
 
+
+  markSkillConceptsCompleted() {
+    debugger
+    for (let i = 0; i < this.skillConcepts.length; i++ ) {
+      for (let j = 0; j < this.skConIDS.skillConceptsIds.length; j++) {
+        if (this.skillConcepts[i].id === this.skConIDS.skillConceptsIds[j]) {
+          this.skillConcepts[i].isCompleted = true;
+          this.isCompleted[i] = true;
+        }
+      }
+      if (!this.skillConcepts[i].isCompleted) {
+        this.skillConcepts[i].isCompleted = false;
+      }
+    }
+  }
+
+
+  getStudentsCompletedSkill() {
+    this.service.getArrayOfSkillConceptsIdStudentHasCompleted(1).subscribe(data => {
+      //debugger;
+      this.skConIDS = data;
+      console.log(this.skConIDS);
+      this. markSkillConceptsCompleted()
+     });
+  }
   getSkillTreeConcepts() {
-    this.service.getSkill().subscribe(data => {
-      debugger;
-      this.skillConcepts = data[0].skillConcepts
-      console.log(data[0]);
-    });
+    this.service.getSkillConceptsByName('Scratch').subscribe(data => {
+     // debugger;
+      this.skillConcepts = data.skillConcepts;
+      console.log(data.skillConcepts);
+      this.getStudentsCompletedSkill();
+     })
   }
 
   buttonClicked(num, elemt) {
     debugger
     this.selector = num
+    this.title = this.skillConcepts[this.selector].skillConceptName
+    this.description = this.skillConcepts[this.selector].description;
+    this.extLearnLinks = this.skillConcepts[this.selector].extLearnLinks
     elemt.show()
   }
 
-  getName(num) {
-    return this.skillConcepts[num].skillConceptName;
+  getName() {
+    return this.skillConcepts[this.selector].skillConceptName
   }
 
-  getDescription(num) {
-    return this.skillConcepts[this.selector].skillDescription;
+  getDescription() {
+    return this.skillConcepts[this.selector].description;
   }
 
-  getExternalLinks(num) {
+  getExternalLinks() {
     return this.skillConcepts[this.selector].extLearnLinks;
   }
 
-  getCompletion(num) {
-    return this.skillConcepts[this.selector].completed;
+ closeModal(element) {
+  element.hide()
+  this.showPassword = false;
+ }
+  checkPassword(password, element) {
+      if (password.value === '1234') {
+        // make service call
+        password.value = null
+        this.showPassword = false;
+        element.hide()
+        this.isCompleted[this.selector] = true;
+      }
   }
 }
