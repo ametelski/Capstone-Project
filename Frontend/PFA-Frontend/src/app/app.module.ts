@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { SkillTreeComponent } from './skill-tree/skill-tree.component';
 import { SkillTreePopoverComponent } from './skill-tree-popover/skill-tree-popover.component';
 import { SkillTreeConceptAdminApprovalComponent } from './skill-tree-concept-admin-approval/skill-tree-concept-admin-approval.component';
+import { UserSelectComponent } from './user-select/user-select.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SkillTreeConceptAdminApprovalComponent } from './skill-tree-concept-adm
     LoginComponent,
     SkillTreeComponent,
     SkillTreePopoverComponent,
-    SkillTreeConceptAdminApprovalComponent
+    SkillTreeConceptAdminApprovalComponent,
+    UserSelectComponent
   ],
   imports: [
     BrowserModule,
