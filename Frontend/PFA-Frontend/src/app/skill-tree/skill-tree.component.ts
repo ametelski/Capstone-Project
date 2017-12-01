@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SkillpathService } from '../skillpath.service';
 import { ISkills, ISkillRootObject } from '../Models/skillPath.model';
-import { ISkillConcept, ISkillConceptsIds } from '../Models/skillConcept.model';
+import { ISkillConcept, ISkillConceptsIds, ExtLearnLink } from '../Models/skillConcept.model';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class SkillTreeComponent implements OnInit {
   name: String = 'Scratch'
   title: String
   description: String
-  extLearnLinks: String[]
+  extLearnLinks:  ExtLearnLink[]
   showPassword: Boolean =  false;
   isCompleted: Boolean[] = [false, false, false, false, false, false, false, false]
 
@@ -32,7 +32,6 @@ export class SkillTreeComponent implements OnInit {
 
 
   markSkillConceptsCompleted() {
-    debugger
     for (let i = 0; i < this.skillConcepts.length; i++ ) {
       for (let j = 0; j < this.skConIDS.skillConceptsIds.length; j++) {
         if (this.skillConcepts[i].id === this.skConIDS.skillConceptsIds[j]) {
@@ -65,7 +64,7 @@ export class SkillTreeComponent implements OnInit {
   }
 
   buttonClicked(num, elemt) {
-    debugger
+
     this.selector = num
     this.title = this.skillConcepts[this.selector].skillConceptName
     this.description = this.skillConcepts[this.selector].description;

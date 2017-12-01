@@ -1,17 +1,16 @@
 export interface ISkillConcept {
-// skillConceptName: String
-// skillDescription: String
-// extLearnLinks: String[]
-// completed: boolean
-// location: Number
 
 _id: String
 description: String
-extLearnLinks: String[]
+extLearnLinks: ExtLearnLink[]
 id: Number
 location: String
 skillConceptName: String
 isCompleted?: Boolean
+}
+export interface ExtLearnLink {
+  shortName: string;
+  url: string;
 }
 
 export interface ISkillConceptRootObject {

@@ -40,7 +40,7 @@ Project Management</button>
 
                 <ul class="list-group z-depth-0">
                     <li *ngFor="let link of extLearnLinks" class="list-group-item justify-content-between">
-                        <a [href]= "link" target="_blank">codecademy</a>
+                        <a [href]= "link.url" target="_blank">{{link.shortName}}</a>
                     </li>
                 </ul>
             </div>

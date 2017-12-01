@@ -7,10 +7,10 @@ from .Person import *
 from .Skill import *
 
 class Student(Person):
-	defaultSkills = [Skill("HTML", "www.linkToTheTree.com"), \
+	defaultSkills = [Skill("Scratch", "\\scratchTree"), \
+					Skill("HTML", "www.linkToTheTree.com"), \
 					Skill("Python", "www.linkToTheTree.com"), \
-					Skill("CSS", "www.linkToTheTree.com"), \
-					Skill("Scratch", "\\scratchTree")
+					Skill("CSS", "www.linkToTheTree.com")
 					]
 
 	def __init__(self, first, last, id, age, email, skillConceptsCompleted=[], skills=["HTML", "Python", "CSS", "Scratch"]):
